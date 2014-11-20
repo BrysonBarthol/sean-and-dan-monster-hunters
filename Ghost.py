@@ -2,7 +2,7 @@ import pygame
 from Creature import Creature
 
 class Ghost(Creature):
-	def __init__():
+	def __init__(self, "RSC/Ghost/gDown1.png", [0,0], pos):
 	self.upImages = [pygame.image.load("RSC/Ghost/gUp1.png"),
 						pygame.image.load("RSC/Ghost/gUp2.png")]
 	self.downImages = [pygame.image.load("RSC/Ghost/gDown1.png"),
