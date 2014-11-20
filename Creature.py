@@ -58,10 +58,10 @@ class Creature():
 				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
 					if (self.radius + other.radius) > self.distance(other.rect.center):
 						if not self.didBounceX:
-							self.speedx = -self.speedx
+							self.speedx = self.speedx
 							self.didBouncex = True
 						if not self.didBounceY:
-							self.speedy = -self.speedy
+							self.speedy = self.speedy
 							self.didBounceY = True
 							#print "hit Ball"
 							
@@ -71,10 +71,10 @@ class Creature():
 				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
 					if (self.radius + other.radius) > self.distance(other.rect.center):
 						if not self.didBounceX:
-							self.speedx = -self.speedx
+							self.speedx = 0
 							self.didBouncex = True
 						if not self.didBounceY:
-							self.speedy = -self.speedy
+							self.speedy = 0
 							self.didBounceY = True
 							#print "hit Ball"
 							
@@ -84,10 +84,10 @@ class Creature():
 				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
 					if (self.radius + other.radius) > self.distance(other.rect.center):
 						if not self.didBounceX:
-							self.speedx = -self.speedx
+							self.speedx = 0
 							self.didBouncex = True
 						if not self.didBounceY:
-							self.speedy = -self.speedy
+							self.speedy = 0
 							self.didBounceY = True
 							#print "hit Ball"
 							
