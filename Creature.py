@@ -98,6 +98,30 @@ class Creature():
 					if (self.radius + other.radius) > self.distance(other.rect.center):
 						self.living = False
 	
+	def animate(self):
+		if self.waitCount < self.maxWait:
+			self.waitCount += 1
+		else:
+			self.waitCount = 0
+			self.changed = True
+			if self.frame < self.maxFrame:
+				self.frame += 1
+			else:
+				self.frame = 0
+		
+		if self.changed:	
+			if self.facing == "up":
+				self.images = self.upImages
+			elif self.facing == "down":
+				self.images = self.downImages
+			elif self.facing == "right":
+				self.images = self.rightImages
+			elif self.facing == "left":
+				self.images = self.leftImages
+			
+			self.image = self.images[self.frame]
+			
+	
 	def distance(self, pt):
 		x1 = self.rect.center[0]
 		y1 = self.rect.center[1]
