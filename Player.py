@@ -65,29 +65,6 @@ class Player(Creature):
 				self.didBounceY = True
 				#print "hit xWall"
 	
-	def animate(self):
-		if self.waitCount < self.maxWait:
-			self.waitCount += 1
-		else:
-			self.waitCount = 0
-			self.changed = True
-			if self.frame < self.maxFrame:
-				self.frame += 1
-			else:
-				self.frame = 0
-		
-		if self.changed:	
-			if self.facing == "up":
-				self.images = self.upImages
-			elif self.facing == "down":
-				self.images = self.downImages
-			elif self.facing == "right":
-				self.images = self.rightImages
-			elif self.facing == "left":
-				self.images = self.leftImages
-			
-			self.image = self.images[self.frame]
-			
 	def animateRanged(self):
 		if self.waitCount < self.maxWait:
 			self.waitCount += 1
