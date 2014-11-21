@@ -65,7 +65,6 @@ class Player(Creature):
 				self.didBounceY = True
 				#print "hit xWall"
 	
-	
 	def animateRanged(self):
 		if self.waitCount < self.maxWait:
 			self.waitCount += 1
