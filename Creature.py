@@ -65,7 +65,7 @@ class Creature():
 							self.didBounceY = True
 							#print "hit Ball"
 							
-	def collideDeamon(self, other):
+	def collideDemon(self, other):
 		if self != other:
 			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
 				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
