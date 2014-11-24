@@ -3,7 +3,7 @@ from Creature import Creature
 
 class Player(Creature):
 	def __init__(self, pos):
-		Creature.__init__(self, "RSC/Player/PlayerUp2.png", [0,0], pos)
+		Creature.__init__(self, image, [0,0], pos)
 		self.upImages = [pygame.image.load(image),
 						 pygame.image.load(image)]
 		self.downImages = [pygame.image.load(image),

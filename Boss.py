@@ -1,8 +1,8 @@
 import pygame, math
-from Leviathin import Leviathin
+from Leviathan import Leviathan
 from Ghost import Ghost
 
-class Boss(Leviathin, Ghost):
+class Boss(Leviathan, Ghost):
 	def __init__(self, pos):
 		Leviathin.__init__(self, pos)
 		Ghost.__init__(self, pos)
