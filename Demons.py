@@ -2,7 +2,8 @@ import pygame, math
 from Creature import Creature
 
 class Demon(Creature):
-	def __init__(self, "RSC/Demon/dDown1.png", [0,0], pos):
+	def __init__(self, pos):
+		Creature.__init__(self, image, speed = [0,0], pos = [0,0])
 		self.upImages = [pygame.image.load("RSC/Demon/dUp1.png"),
 							pygame.image.load("RSC/Demon/dUp2.png")]
 		self.downImages = [pygame.image.load("RSC/Demon/dDown1.png"),
