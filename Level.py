@@ -33,10 +33,10 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "#":
-                    self.blocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.blocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
                                            self.screenSize,
-                                           "rcs/imgs/block/cobblestone.png",
-                                           (10,10)
+                                           "rcs/imgs/block/block.png",
+                                           (self.blockSize,self.blockSize)
                                            )]
 #-------Blocks
                 
@@ -60,13 +60,8 @@ class Level():
             for x, c in enumerate(line):
 #-------Blocks
                 if c == "@":
-                    self.darkblocks += [Block([(x*10)+5, (y*10)+5], 
+                    self.darkblocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
                                             self.screenSize,
                                             "rcs/imgs/block/spawnspace.png",
-                                            (10,10)
+                                            (self.blockSize,self.blockSize)
                                             )]
-#-------Blocks
-#-------Blocks
-
-    
-#-------Blocks
