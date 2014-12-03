@@ -7,6 +7,7 @@ class Level():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
+        self.levelChangeBlocks = []
         self.enemies = []
         self.player
         self.load(level)
@@ -38,6 +39,33 @@ class Level():
                                            "rcs/imgs/block/block.png",
                                            (self.blockSize,self.blockSize)
                                            )]
+        for y, line in enumerate(newlines):
+            for x, c in enumerate(line):
+                if c == "#":
+                    self.blocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
+                                           self.screenSize,
+                                           "rcs/imgs/block/block.png",
+                                           (self.blockSize,self.blockSize)
+                                           )]
+        for y, line in enumerate(newlines):
+            for x, c in enumerate(line):
+                if c == "#":
+                    self.blocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
+                                           self.screenSize,
+                                           "rcs/imgs/block/block.png",
+                                           (self.blockSize,self.blockSize)
+                                           )]
+        for y, line in enumerate(newlines):
+            for x, c in enumerate(line):
+                if c == "#":
+                    self.blocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
+                                           self.screenSize,
+                                           "rcs/imgs/block/block.png",
+                                           (self.blockSize,self.blockSize)
+                                           )]
+        
+        
+        
 #-------Blocks
                 
                     
@@ -59,9 +87,13 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
 #-------Blocks
-                if c == "@":
-                    self.darkblocks += [Block([(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)], 
-                                            self.screenSize,
-                                            "rcs/imgs/block/spawnspace.png",
-                                            (self.blockSize,self.blockSize)
-                                            )]
+                if c == "N":
+					newlev = self.level[:7] + str(int(self.level[7]+1))
+					self.levelChangeBlocks += [LevelChangeBlock(newlev,
+					                                            (x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2) 
+					                                            (self.blockSize,self.blockSize))]
+				if c == "W":
+					newlev = self.level[:6] + str(int(self.level[6]+1)+ self.level[7])
+					self.levelChangeBlocks += [LevelChangeBlock(newlev,
+					                                            (x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2) 
+					                                            (self.blockSize,self.blockSize))]

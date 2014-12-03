@@ -16,11 +16,11 @@ class Block():
 		self.image = pygame.transform.scale(self.baseImage, size)
 	
 	def distance(self, pt):
-	x1 = self.rect.center[0]
-	y1 = self.rect.center[0]
-	y2 = pt[0]
-	x2 = pt[0]
-	return math.sqrt ((x2-x1)**2) + ((y2-y1)**2))
+		x1 = self.rect.center[0]
+		y1 = self.rect.center[0]
+		y2 = pt[0]
+		x2 = pt[0]
+		return math.sqrt ((x2-x1)**2) + ((y2-y1)**2))
 	
 	def update(self):
 		pass
