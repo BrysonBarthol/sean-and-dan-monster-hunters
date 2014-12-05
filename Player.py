@@ -12,30 +12,6 @@ class Player(Creature):
 						   pygame.image.load(image)]
 		self.rightImages = [pygame.image.load(image),
 						    pygame.image.load(image)]
-		self.upImagesRanged = [pygame.image.load(image),
-						 pygame.image.load(image)]
-		self.downImagesRanged = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.leftImagesRanged = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.rightImagesRanged = [pygame.image.load(image),
-						    pygame.image.load(image)]
-		self.upImagesSalt = [pygame.image.load(image),
-						 pygame.image.load(image)]
-		self.downImagesSalt = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.leftImagesSalt = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.rightImagesSalt = [pygame.image.load(image),
-						    pygame.image.load(image)]
-		self.upImagesKnife = [pygame.image.load(image),
-						 pygame.image.load(image)]
-		self.downImagesKnife = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.leftImagesKnife = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.rightImagesKnife = [pygame.image.load(image),
-						    pygame.image.load(image)]
 		self.facing = "up"
 		self.changed = False
 		self.images = self.upImages
@@ -78,13 +54,13 @@ class Player(Creature):
 		
 		if self.changed:	
 			if self.facing == "up":
-				self.images = self.upImagesRanged
+				self.images = self.upImages
 			elif self.facing == "down":
-				self.images = self.downImagesRanged
+				self.images = self.downImages
 			elif self.facing == "right":
-				self.images = self.rightImagesRanged
+				self.images = self.rightImages
 			elif self.facing == "left":
-				self.images = self.leftImagesRanged
+				self.images = self.leftImages
 			
 			self.image = self.images[self.frame]
 			
@@ -101,13 +77,13 @@ class Player(Creature):
 		
 		if self.changed:	
 			if self.facing == "up":
-				self.images = self.upImagesSalt
+				self.images = self.upImages
 			elif self.facing == "down":
-				self.images = self.downImagesSalt
+				self.images = self.downImages
 			elif self.facing == "right":
-				self.images = self.rightImagesSalt
+				self.images = self.rightImages
 			elif self.facing == "left":
-				self.images = self.leftImagesSalt
+				self.images = self.leftImages
 			
 			self.image = self.images[self.frame]
 			
@@ -124,13 +100,13 @@ class Player(Creature):
 		
 		if self.changed:	
 			if self.facing == "up":
-				self.images = self.upImagesSalt
+				self.images = self.upImages
 			elif self.facing == "down":
-				self.images = self.downImagesSalt
+				self.images = self.downImages
 			elif self.facing == "right":
-				self.images = self.rightImagesSalt
+				self.images = self.rightImages
 			elif self.facing == "left":
-				self.images = self.leftImagesSalt
+				self.images = self.leftImages
 			
 			self.image = self.images[self.frame]
 	

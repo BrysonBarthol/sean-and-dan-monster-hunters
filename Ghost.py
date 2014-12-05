@@ -4,14 +4,14 @@ from Creature import Creature
 class Ghost(Creature):
 	def __init__(self, pos):
 		Creature.__init__(self, image, speed = [0,0], pos = [0,0])
-		self.upImages = [pygame.image.load("RSC/Ghost/gUp1.png"),
-							pygame.image.load("RSC/Ghost/gUp2.png")]
-		self.downImages = [pygame.image.load("RSC/Ghost/gDown1.png"),
-							pygame.image.load("RSC/Ghost/gDown2.png")]
-		self.leftImages = [pygame.image.load("RSC/Ghost/gLeft1.png"),
-							pygame.image.load("RSC/Ghost/gLeft2.png")]
-		self.rightImages = [pygame.image.load("RSC/Ghost/gRight1.png"),
-							pygame.image.load("RSC/Ghost/gRight2.png")]
+		self.upImages = [pygame.image.load("RSC/Ghost/GhostUp1.png"),
+							pygame.image.load("RSC/Ghost/GhostUp2.png")]
+		self.downImages = [pygame.image.load("RSC/Ghost/GhostDown1.png"),
+							pygame.image.load("RSC/Ghost/GhostDown2.png")]
+		self.leftImages = [pygame.image.load("RSC/Ghost/GhostLeft1.png"),
+							pygame.image.load("RSC/Ghost/GhostLeft2.png")]
+		self.rightImages = [pygame.image.load("RSC/Ghost/GhostRight1.png"),
+							pygame.image.load("RSC/Ghost/GhostRight2.png")]
 		self.facing = "down"
 		self.changed = False
 		self.images = self.downImages
