@@ -3,7 +3,7 @@ from Demon import Demon
 
 class Leviathan(Demon):
 	def __init__(self, pos):
-		Creature.__init__(self, image, speed = [0,0], pos = [0,0])
+		Creature.__init__(self, "RSC/Leviathan/LeviDown1.png", [0,0], pos)
 		self.upImages = [pygame.image.load("RSC/Leviathan/LeviUp1.png"),
 							pygame.image.load("RSC/Leviathan/LeviUp2.png")]
 		self.downImages = [pygame.image.load("RSC/Leviathan/LeviDown1.png"),

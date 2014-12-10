@@ -3,7 +3,7 @@ from Creature import Creature
 
 class Demon(Creature):
 	def __init__(self, pos):
-		Creature.__init__(self, "RSC/Demon/DemonUp1.png", [0,0], pos)
+		Creature.__init__(self, "RSC/Demon/DemonDown1.png", [0,0], pos)
 		self.upImages = [pygame.image.load("RSC/Demon/DemonUp1.png"),
 							pygame.image.load("RSC/Demon/DemonUp2.png")]
 		self.downImages = [pygame.image.load("RSC/Demon/DemonDown1.png"),
@@ -32,6 +32,9 @@ class Demon(Creature):
 		
 	def collidePlayer(self, other):
 		pass
+	
+	def collideGhost(self, other):
+		pass
 		
 	def collideDemon(self, other):
 		if self.rect.left < 0 or self.rect.right > width:
@@ -56,23 +59,25 @@ class Demon(Creature):
 			if self.rect.right+self.detectRadius > player.rect.left:
 				if self.rect.left-self.detectRadius < player.rect.right:
 					if self.rect.bottom > player.rect.top:
-						if self.rect.top-self.detectRadius*2 < other.rect.bottom:
+						if self.rect.top+self.detectRadius*2 < player.rect.bottom:
 							seen = True
 		if self.direction == "down"
 			if self.rect.right+self.detectRadius > player.rect.left:
 				if self.rect.left-self.detectRadius < player.rect.right:
-					if self.rect.bottom+self.detectRadius*2 > player.rect.top:
-						if self.rect.top < other.rect.bottom:
+					if self.rect.bottom+self.detectRadius*2 < player.rect.top:
+						if self.rect.top > other.rect.bottom:
 							seen = True
 		if self.direction == "right"
-			if self.rect.right+self.detectRadius > player.rect.left:
-				if self.rect.left-self.detectRadius < player.rect.right:
-					if self.rect.bottom+self.detectRadius*2 > player.rect.top:
-						if self.rect.top < other.rect.bottom:
+			if self.rect.right+self.detectRadius*2 > player.rect.left:
+				if self.rect.left < player.rect.right:
+					if self.rect.bottom+self.detectRadius < player.rect.top:
+						if self.rect.top+self.detectRadius > other.rect.bottom:
 							seen = True
 		if self.direction == "left"
-			if self.rect.right+self.detectRadius > player.rect.left:
-				if self.rect.left-self.detectRadius < player.rect.right:
-					if self.rect.bottom+self.detectRadius*2 > player.rect.top:
-						if self.rect.top < other.rect.bottom:
+			if self.rect.right > player.rect.left:
+				if self.rect.left-self.detectRadius*2 < player.rect.right:
+					if self.rect.bottom+self.detectRadius < player.rect.top:
+						if self.rect.top+self.detectRadius > other.rect.bottom:
 							seen = True
+							
+	def seen(self, player):
