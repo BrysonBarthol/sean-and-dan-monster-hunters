@@ -29,6 +29,7 @@ class Ghost(Creature):
 		self.changed = False
 		
 	def collidePlayer(self, other):
+		pass
 		
 	def collideDemon(self, other):
 		if self.rect.left < 0 or self.rect.right > width:
