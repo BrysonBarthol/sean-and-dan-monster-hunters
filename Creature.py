@@ -52,35 +52,7 @@ class Creature():
 				self.didBounceY = True
 				#print "hit xWall"
 		
-	def collideGhost(self, other):
-		pass
-							
-	def collideDemon(self, other):
-		if self != other:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
-						if not self.didBounceX:
-							self.speedx = 0
-							self.didBouncex = True
-						if not self.didBounceY:
-							self.speedy = 0
-							self.didBounceY = True
-							#print "hit Ball"
-							
-	def collideLeviathan(self, other):
-		if self != other:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
-						if not self.didBounceX:
-							self.speedx = 0
-							self.didBouncex = True
-						if not self.didBounceY:
-							self.speedy = 0
-							self.didBounceY = True
-							#print "hit Ball"
-	
+
 	def animate(self):
 		if self.waitCount < self.maxWait:
 			self.waitCount += 1

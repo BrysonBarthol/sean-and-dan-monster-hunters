@@ -14,5 +14,11 @@ class Boss(Leviathan, Ghost):
 							pygame.image.load("RSC/Boss/BossLeft2.png")]
 		self.rightImages = [pygame.image.load("RSC/Boss/BossRight1.png"),
 							pygame.image.load("RSC/Boss/BossRight2.png")]]
+		
+		
+		self.detectRadius = 50 #Play with the number
+	
+
+		
 
 

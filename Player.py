@@ -2,16 +2,58 @@ import pygame
 from Creature import Creature
 
 class Player(Creature):
-	def __init__(self, pos):
+	def __init__(self, guy, pos):
 		Creature.__init__(self, image, [0,0], pos)
-		self.upImages = [pygame.image.load(image),
-						 pygame.image.load(image)]
-		self.downImages = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.leftImages = [pygame.image.load(image),
-						   pygame.image.load(image)]
-		self.rightImages = [pygame.image.load(image),
-						    pygame.image.load(image)]
+		if guy == "Sean":
+			self.upImages = [pygame.image.load(RSC/Player/DeanUp1.png),
+							 pygame.image.load(RSC/Player/DeanUp2.png)]
+			self.downImages = [pygame.image.load(RSC/Player/DeanDown1.png),
+							   pygame.image.load(RSC/Player/DeanDown2.png)]
+			self.leftImages = [pygame.image.load(RSC/Player/DeanLeft1.png),
+							   pygame.image.load(RSC/Player/DeanLeft2.png)]
+			self.rightImages = [pygame.image.load(RSC/Player/DeanRight1.png),
+								pygame.image.load(RSC/Player/DeanRight2.png)]
+			self.upKnifeImages = [pygame.image.load(RSC/Player/),
+							 pygame.image.load(RSC/Player/)]
+			self.downKnifeImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.leftKnifeImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.rightKnifeImages = [pygame.image.load(RSC/Player/),
+								pygame.image.load(RSC/Player/)]
+			self.upRangedImages = [pygame.image.load(RSC/Player/),
+							 pygame.image.load(RSC/Player/)]
+			self.downRangedImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.leftRangedImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.rightRangedImages = [pygame.image.load(RSC/Player/),
+								pygame.image.load(RSC/Player/)]
+		else:
+			self.upImages = [pygame.image.load(RSC/Player/SamUp1.png),
+							 pygame.image.load(RSC/Player/SamUp2.png)]
+			self.downImages = [pygame.image.load(RSC/Player/SamDown1.png),
+							   pygame.image.load(RSC/Player/SamDown2.png)]
+			self.leftImages = [pygame.image.load(RSC/Player/SamLeft1.png),
+							   pygame.image.load(RSC/Player/SamLeft2.png)]
+			self.rightImages = [pygame.image.load(RSC/Player/SamRight1),
+								pygame.image.load(RSC/Player/SamRight2)]
+			self.upKnifeImages = [pygame.image.load(RSC/Player/),
+							 pygame.image.load(RSC/Player/)]
+			self.downKnifeImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.leftKnifeImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.rightKnifeImages = [pygame.image.load(RSC/Player/),
+								pygame.image.load(RSC/Player/)]
+			self.upRangedImages = [pygame.image.load(RSC/Player/),
+							 pygame.image.load(RSC/Player/)]
+			self.downRangedImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.leftRangedImages = [pygame.image.load(RSC/Player/),
+							   pygame.image.load(RSC/Player/)]
+			self.rightRangedImages = [pygame.image.load(RSC/Player/),
+								pygame.image.load(RSC/Player/)]
 		self.facing = "up"
 		self.changed = False
 		self.images = self.upImages
@@ -22,6 +64,20 @@ class Player(Creature):
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect(center = self.rect.center)
 		self.maxSpeed = 10
+		self.shooting = False
+		self.stabbing = False
+		
+	def stab(self):
+		pass
+		#return Knife(self.rect.center, self.facing) 0
+		self.changed = True
+		self.stabbing = True
+	
+	def shoot(self):
+		pass
+		#return Bullet(self.rect.center, self.facing) 0
+		self.changed = True
+		self.shooting = True
 			
 	def update(self, width, height):
 		Creature.update(self, width, height)
@@ -41,7 +97,7 @@ class Player(Creature):
 				self.didBounceY = True
 				#print "hit xWall"
 	
-	def animateRanged(self):
+	def animate(self):
 		if self.waitCount < self.maxWait:
 			self.waitCount += 1
 		else:
@@ -51,10 +107,21 @@ class Player(Creature):
 				self.frame += 1
 			else:
 				self.frame = 0
+				if self.shooting:
+					self.shooting = False
+					self.images = self.upImages
+				if self.stabbing:
+					self.stabbing = False
+					self.images = self.upImages
 		
 		if self.changed:	
 			if self.facing == "up":
-				self.images = self.upImages
+				if self.shooting:
+					self.images = self.upRangedImages
+				elif self.stabbing:
+					self.images = self.upKnifeImages
+				else:
+					self.images = self.upImages
 			elif self.facing == "down":
 				self.images = self.downImages
 			elif self.facing == "right":
@@ -64,52 +131,6 @@ class Player(Creature):
 			
 			self.image = self.images[self.frame]
 			
-	def animateSalt(self):
-		if self.waitCount < self.maxWait:
-			self.waitCount += 1
-		else:
-			self.waitCount = 0
-			self.changed = True
-			if self.frame < self.maxFrame:
-				self.frame += 1
-			else:
-				self.frame = 0
-		
-		if self.changed:	
-			if self.facing == "up":
-				self.images = self.upImages
-			elif self.facing == "down":
-				self.images = self.downImages
-			elif self.facing == "right":
-				self.images = self.rightImages
-			elif self.facing == "left":
-				self.images = self.leftImages
-			
-			self.image = self.images[self.frame]
-			
-	def animateKnife(self):
-		if self.waitCount < self.maxWait:
-			self.waitCount += 1
-		else:
-			self.waitCount = 0
-			self.changed = True
-			if self.frame < self.maxFrame:
-				self.frame += 1
-			else:
-				self.frame = 0
-		
-		if self.changed:	
-			if self.facing == "up":
-				self.images = self.upImages
-			elif self.facing == "down":
-				self.images = self.downImages
-			elif self.facing == "right":
-				self.images = self.rightImages
-			elif self.facing == "left":
-				self.images = self.leftImages
-			
-			self.image = self.images[self.frame]
-	
 	def go(self, direction):
 		if direction == "up":
 			self.facing = "up"
