@@ -37,5 +37,8 @@ class Ghost(Creature):
 	def collideLeviathan(self, other):
 		pass
 				
-	def collideBlock(self, other):
+	def collideBlock(self, width, height):
+		pass
+		
+	def collideWall(self, width, height):
 		pass

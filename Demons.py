@@ -32,27 +32,6 @@ class Demon(Creature):
 		
 	def collidePlayer(self, other):
 		pass
-	
-	def collideGhost(self, other):
-		pass
-		
-	def collideDemon(self, other):
-		if self.rect.left < 0 or self.rect.right > width:
-				self.didBounceX = False
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.didBounceY = False
-				
-	def collideLeviathan(self, other):
-		if self.rect.left < 0 or self.rect.right > width:
-				self.didBounceX = False
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.didBounceY = False
-				
-	def collideBlock(self, other):
-			if self.rect.left < 0 or self.rect.right > width:
-				self.didBounceX = False
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.didBounceY = False
 				
 	def detectPlayer(self, player):
 		if self.direction == "up"
