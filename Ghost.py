@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 from Creature import Creature
 
 class Ghost(Creature):
@@ -32,13 +32,45 @@ class Ghost(Creature):
 		pass
 		
 	def collideDemon(self, other):
-		pass
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						if not self.didBounceX:
+							self.speedx = -self.speedx
+							self.didBouncex = False
+						if not self.didBounceY:
+							self.speedy = -self.speedy
+							self.didBounceY = False
 				
 	def collideLeviathan(self, other):
-		pass
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						if not self.didBounceX:
+							self.speedx = -self.speedx
+							self.didBouncex = False
+						if not self.didBounceY:
+							self.speedy = -self.speedy
+							self.didBounceY = False
 				
 	def collideBlock(self, width, height):
-		pass
+		if not self.didBounceX:
+			if self.rect.left < 0 or self.rect.right > width:
+				self.speedx = -self.speedx
+				self.didBounceX = False
+		if not self.didBounceY:
+			if self.rect.top < 0 or self.rect.bottom > height:
+				self.speedy = -self.speedy
+				self.didBounceY = False
 		
 	def collideWall(self, width, height):
-		pass
+		if not self.didBounceX:
+			if self.rect.left < 0 or self.rect.right > width:
+				self.speedx = -self.speedx
+				self.didBounceX = False
+		if not self.didBounceY:
+			if self.rect.top < 0 or self.rect.bottom > height:
+				self.speedy = -self.speedy
+				self.didBounceY = False
