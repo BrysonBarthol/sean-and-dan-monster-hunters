@@ -4,41 +4,41 @@ from Creature import Creature
 class Player(Creature):
 	def __init__(self, guy, pos):
 		Creature.__init__(self, image, [0,0], pos)
-		if guy == "Sean":
-			self.upImages = [pygame.image.load(RSC/Player/DeanUp1.png),
-							 pygame.image.load(RSC/Player/DeanUp2.png)]
-			self.downImages = [pygame.image.load(RSC/Player/DeanDown1.png),
-							   pygame.image.load(RSC/Player/DeanDown2.png)]
-			self.leftImages = [pygame.image.load(RSC/Player/DeanLeft1.png),
-							   pygame.image.load(RSC/Player/DeanLeft2.png)]
-			self.rightImages = [pygame.image.load(RSC/Player/DeanRight1.png),
-								pygame.image.load(RSC/Player/DeanRight2.png)]
-			self.upKnifeImages = [pygame.image.load(RSC/Player/),
-							 pygame.image.load(RSC/Player/)]
-			self.downKnifeImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.leftKnifeImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.rightKnifeImages = [pygame.image.load(RSC/Player/),
-								pygame.image.load(RSC/Player/)]
-			self.upRangedImages = [pygame.image.load(RSC/Player/),
-							 pygame.image.load(RSC/Player/)]
-			self.downRangedImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.leftRangedImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.rightRangedImages = [pygame.image.load(RSC/Player/),
-								pygame.image.load(RSC/Player/)]
+		if guy == "Dan":
+			self.upImages = [pygame.image.load("RSC/Player/DeanUp1.png"),
+							 pygame.image.load("RSC/Player/DeanUp2.png")]
+			self.downImages = [pygame.image.load("RSC/Player/DeanDown1.png"),
+							   pygame.image.load("RSC/Player/DeanDown2.png")]
+			self.leftImages = [pygame.image.load("RSC/Player/DeanLeft1.png"),
+							   pygame.image.load("RSC/Player/DeanLeft2.png")]
+			self.rightImages = [pygame.image.load("RSC/Player/DeanRight1.png"),
+								pygame.image.load("RSC/Player/DeanRight2.png")]
+			self.upKnifeImages = [pygame.image.load("RSC/Player/DeanUpKnife1.png"),
+							 pygame.image.load("RSC/Player/DeanUpKnife2.png")]
+			self.downKnifeImages = [pygame.image.load("RSC/Player/DeanDownKinfe1.png"),
+							   pygame.image.load("RSC/Player/DeanDownKnife2.png")]
+			self.leftKnifeImages = [pygame.image.load("RSC/Player/DeanLeftKnife1.png"),
+							   pygame.image.load("RSC/Player/DeanLeftKnife2.png")]
+			self.rightKnifeImages = [pygame.image.load("RSC/Player/DeanRightKnife1.png"),
+								pygame.image.load("RSC/Player/DeanRightKnife2.png")]
+			self.upRangedImages = [pygame.image.load("RSC/Player/),
+							 pygame.image.load("RSC/Player/)]
+			self.downRangedImages = [pygame.image.load("RSC/Player/),
+							   pygame.image.load("RSC/Player/)]
+			self.leftRangedImages = [pygame.image.load("RSC/Player/),
+							   pygame.image.load("RSC/Player/)]
+			self.rightRangedImages = [pygame.image.load("RSC/Player/),
+								pygame.image.load("RSC/Player/)]
 		else:
-			self.upImages = [pygame.image.load(RSC/Player/SamUp1.png),
-							 pygame.image.load(RSC/Player/SamUp2.png)]
-			self.downImages = [pygame.image.load(RSC/Player/SamDown1.png),
-							   pygame.image.load(RSC/Player/SamDown2.png)]
-			self.leftImages = [pygame.image.load(RSC/Player/SamLeft1.png),
-							   pygame.image.load(RSC/Player/SamLeft2.png)]
-			self.rightImages = [pygame.image.load(RSC/Player/SamRight1),
-								pygame.image.load(RSC/Player/SamRight2)]
-			self.upKnifeImages = [pygame.image.load(RSC/Player/),
+			self.upImages = [pygame.image.load("RSC/Player/SamUp1.png"),
+							 pygame.image.load("RSC/Player/SamUp2.png")]
+			self.downImages = [pygame.image.load("RSC/Player/SamDown1.png"),
+							   pygame.image.load("RSC/Player/SamDown2.png")]
+			self.leftImages = [pygame.image.load("RSC/Player/SamLeft1.png"),
+							   pygame.image.load("RSC/Player/SamLeft2.png")]
+			self.rightImages = [pygame.image.load("RSC/Player/SamRight1"),
+								pygame.image.load("RSC/Player/SamRight2")]
+			self.upKnifeImages = [pygame.image.load("RSC/Player/SamUpKnife1.png"),
 							 pygame.image.load(RSC/Player/)]
 			self.downKnifeImages = [pygame.image.load(RSC/Player/),
 							   pygame.image.load(RSC/Player/)]
