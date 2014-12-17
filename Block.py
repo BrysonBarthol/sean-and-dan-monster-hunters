@@ -1,7 +1,7 @@
 import pygame, math, sys
 
 class Block():
-    def __init__(self, image, pos = [0,0], size = [100,100]):
+    def __init__(self, image, pos, size):
         self.baseImage = pygame.image.load(image)
         if size != None:
             self.resize(size)

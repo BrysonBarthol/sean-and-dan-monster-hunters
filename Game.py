@@ -7,6 +7,7 @@ from Level import Level
 #from HUDAmmo import HUDAmmo
 #from HUDCoin import HUDCoins
 #from HUDHeart import HUDHearts
+from LevelChangeBlock import LevelChangeBlock
 
 pygame.init()
 win = False
@@ -23,10 +24,10 @@ bgColor = r,g,b = 0, 0, 0
 level = Level("screen34", screenSize)
 player = level.player
 
-ammo = HUDAmmo
-coins = HUDCoins
-ammo = Score([400, 25], "Ammo: ", 36)
-coins = Score([600, 25], "Coins: ", 36)
+#ammo = HUDAmmo
+#coins = HUDCoins
+#ammo = Score([400, 25], "Ammo: ", 36)
+#coins = Score([600, 25], "Coins: ", 36)
 
 while True:
         for event in pygame.event.get():
@@ -49,7 +50,7 @@ while True:
                                 player.go("stop down")
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                                 player.go("stop left")
-
+        
 
 
         red = 0
@@ -57,5 +58,7 @@ while True:
         blue = 0
         bgColor = red, green, blue
         screen.fill(bgColor)
-        screen.blit(background.surface, background.rect)
+        for block in level.blocks:
+            screen.blit(block.image, block.rect)
+        #screen.blit(background.surface, background.rect)
         pygame.display.flip()
