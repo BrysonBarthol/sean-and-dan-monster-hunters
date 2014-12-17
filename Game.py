@@ -21,7 +21,7 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 bgColor = r,g,b = 0, 0, 0
-level = Level("screen34", screenSize)
+level = Level("screen24", screenSize)
 player = level.player
 
 #ammo = HUDAmmo
