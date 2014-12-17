@@ -1,5 +1,6 @@
 import pygame
 from Creature import Creature
+from Bullet import Bullet
 
 class Player(Creature):
 	def __init__(self, guy, pos):
@@ -21,15 +22,15 @@ class Player(Creature):
 							   pygame.image.load("RSC/Player/DeanLeftKnife2.png")]
 			self.rightKnifeImages = [pygame.image.load("RSC/Player/DeanRightKnife1.png"),
 								pygame.image.load("RSC/Player/DeanRightKnife2.png")]
-			self.upRangedImages = [pygame.image.load("RSC/Player/),
-							 pygame.image.load("RSC/Player/)]
-			self.downRangedImages = [pygame.image.load("RSC/Player/),
-							   pygame.image.load("RSC/Player/)]
-			self.leftRangedImages = [pygame.image.load("RSC/Player/),
-							   pygame.image.load("RSC/Player/)]
-			self.rightRangedImages = [pygame.image.load("RSC/Player/),
-								pygame.image.load("RSC/Player/)]
-		else:
+			self.upRangedImages = [pygame.image.load("RSC/Player/DeanUp1.png"),
+							 pygame.image.load("RSC/Player/DeanUp2.png")]
+			self.downRangedImages = [pygame.image.load("RSC/Player/DeanDown1.png"),
+							   pygame.image.load("RSC/Player/DeanDown2.png")]
+			self.leftRangedImages = [pygame.image.load("RSC/Player/DeanLeft1.png"),
+							   pygame.image.load("RSC/Player/DeanLeft2.png")]
+			self.rightRangedImages = [pygame.image.load("RSC/Player/DeanRight1.png"),
+								pygame.image.load("RSC/Player/DeanRight1.png")]
+		else guy == "Sean":
 			self.upImages = [pygame.image.load("RSC/Player/SamUp1.png"),
 							 pygame.image.load("RSC/Player/SamUp2.png")]
 			self.downImages = [pygame.image.load("RSC/Player/SamDown1.png"),
@@ -39,21 +40,21 @@ class Player(Creature):
 			self.rightImages = [pygame.image.load("RSC/Player/SamRight1"),
 								pygame.image.load("RSC/Player/SamRight2")]
 			self.upKnifeImages = [pygame.image.load("RSC/Player/SamUpKnife1.png"),
-							 pygame.image.load(RSC/Player/)]
-			self.downKnifeImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.leftKnifeImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.rightKnifeImages = [pygame.image.load(RSC/Player/),
-								pygame.image.load(RSC/Player/)]
-			self.upRangedImages = [pygame.image.load(RSC/Player/),
-							 pygame.image.load(RSC/Player/)]
-			self.downRangedImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.leftRangedImages = [pygame.image.load(RSC/Player/),
-							   pygame.image.load(RSC/Player/)]
-			self.rightRangedImages = [pygame.image.load(RSC/Player/),
-								pygame.image.load(RSC/Player/)]
+							 pygame.image.load("RSC/Player/SamUpKnife2.png")]
+			self.downKnifeImages = [pygame.image.load("RSC/Player/SamDownKnife1.png"),
+							   pygame.image.load("RSC/Player/SamDownKinfe2.png")]
+			self.leftKnifeImages = [pygame.image.load("RSC/Player/SamLeftKnife1.png"),
+							   pygame.image.load("RSC/Player/SamLeftKnife2.png")]
+			self.rightKnifeImages = [pygame.image.load("RSC/Player/SamRightKnife1.png"),
+								pygame.image.load("RSC/Player/SamRightKnife2.png")]
+			self.upRangedImages = [pygame.image.load("RSC/Player/SamUp1.png"),
+							 pygame.image.load("RSC/Player/SamUp2.png")]
+			self.downRangedImages = [pygame.image.load("RSC/Player/SamDown1.png"),
+							   pygame.image.load("RSC/Player/SamDown2.png")]
+			self.leftRangedImages = [pygame.image.load("RSC/Player/SamLeft1.png"),
+							   pygame.image.load("RSC/Player/SamLeft2.png")]
+			self.rightRangedImages = [pygame.image.load("RSC/Player/SamRight1.png"),
+								pygame.image.load("RSC/Player/SamRight2.png")]
 		self.facing = "up"
 		self.changed = False
 		self.images = self.upImages
@@ -74,8 +75,8 @@ class Player(Creature):
 		self.stabbing = True
 	
 	def shoot(self):
-		pass
-		#return Bullet(self.rect.center, self.facing) 0
+		#pass
+		return Bullet(self.rect.center, self.facing) 0
 		self.changed = True
 		self.shooting = True
 			
