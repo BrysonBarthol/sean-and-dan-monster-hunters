@@ -26,6 +26,7 @@ class Demon(Creature):
 	
 	def update(self, player, width, height):
 		self.detectPlayer(player)
+		self.speed = [self.speedx, self.speedy]
 		Creature.update(self, width, height)
 		self.animate()
 		self.changed = False
@@ -34,24 +35,28 @@ class Demon(Creature):
 		pass
 		
 	def collideDemon(self, other):
-	if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
-				self.speedx = -self.speedx
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.speedy = -self.speedy
-				self.didBounceY = True
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						if not self.didBounceX:
+							self.speedx = -self.speedx
+							self.didBouncex = True
+						if not self.didBounceY:
+							self.speedy = -self.speedy
+							self.didBounceY = True
 	
 	def collideLeviathan(self, other):			
-	if not self.didBounceX:
-			if self.rect.left < 0 or self.rect.right > width:
-				self.speedx = -self.speedx
-				self.didBounceX = True
-		if not self.didBounceY:
-			if self.rect.top < 0 or self.rect.bottom > height:
-				self.speedy = -self.speedy
-				self.didBounceY = True
+		if self != other:
+			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+					if (self.radius + other.radius) > self.distance(other.rect.center):
+						if not self.didBounceX:
+							self.speedx = -self.speedx
+							self.didBouncex = True
+						if not self.didBounceY:
+							self.speedy = -self.speedy
+							self.didBounceY = True
 				
 	def detectPlayer(self, player):
 		if self.direction == "up"
@@ -79,4 +84,19 @@ class Demon(Creature):
 						if self.rect.top+self.detectRadius > other.rect.bottom:
 							seen = True
 							
-	def seen(self, player):
+		if seen:
+			xdiff = player.rect.center[0]-self.rect.center[0]
+			ydiff = player.rect.center[1]-self.rect.center[1]
+			
+			if xdiff > 0: #to the right of the player
+				self.speedx = self.maxSpeed
+			elif xdiff < 0: #to the left
+				self.speedx =-self.maxSpeed
+				
+			if ydiff > 0: #below
+				self.speedy = self.maxSpeed
+			elif ydiff < 0: #above
+				self.speedy =-self.maxSpeed
+				
+		
+		
