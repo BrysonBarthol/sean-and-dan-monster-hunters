@@ -1,4 +1,5 @@
 import pygame, math, sys
+from HUD import Text
 
 class HUDHearts():
         def __init__(self, pos):
@@ -9,17 +10,17 @@ class HUDHearts():
                 self.place(self, pos)        
         
         def setImage(self):
-			if hearts == 1:	
-				pygame.image.load("RCS/HUD/heart1.png"
+            if hearts == 1: 
+                pygame.image.load("RCS/HUD/heart1.png")
             elif hearts == 2:
-                pygame.image.load("RCS/HUD/heart2.png"
+                pygame.image.load("RCS/HUD/heart2.png")
             elif hearts == 3:
-                pygame.image.load("RCS/HUD/heart3.png"
+                pygame.image.load("RCS/HUD/heart3.png")
             elif hearts == 4:
-                pygame.image.load("RCS/HUD/heart4.png"
+                pygame.image.load("RCS/HUD/heart4.png")
 
         def place(self, pos):
-			self.rect.center = pos
+            self.rect.center = pos
              
         def update(self):
                 if self.change:

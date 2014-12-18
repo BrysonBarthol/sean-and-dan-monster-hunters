@@ -1,5 +1,6 @@
 import pygame, math, sys
-from Hud import Text
+from HUD import Text
+
 class HUDAmmo(Text):
         def __init__(self, pos, baseText = "Ammo: ", textSize = 36, textColor=(255,255,255), font = None):
                 self.ammo = 0

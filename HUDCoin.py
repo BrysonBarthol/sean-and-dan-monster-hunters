@@ -1,4 +1,5 @@
 import pygame, math, sys
+from HUD import Text
 
 class HUDCoins(Text):
         def __init__(self, pos, baseText = "Coins: ", textSize = 36, textColor=(255,255,255), font = None):
