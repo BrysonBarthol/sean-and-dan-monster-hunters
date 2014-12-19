@@ -1,6 +1,7 @@
 import pygame
 from Creature import Creature
 from Bullet import Bullet
+from Knife import Knife
 
 class Player(Creature):
 	def __init__(self, guy, pos):
@@ -131,6 +132,12 @@ class Player(Creature):
 				self.images = self.leftImages
 			
 			self.image = self.images[self.frame]
+	
+	def collideMonster(self, other):
+		if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+			if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+				if (self.radius + other.radius) > self.distance(other.rect.center):
+					self.hurt()
 			
 	def go(self, direction):
 		if direction == "up":

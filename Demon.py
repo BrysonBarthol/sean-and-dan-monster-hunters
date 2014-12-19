@@ -23,6 +23,7 @@ class Demon(Creature):
 		self.rect = self.image.get_rect(center = self.rect.center)
 		self.maxSpeed = 10
 		self.detectRadius = 32 #Play with this number
+		self.shooting = False
 	
 	def update(self, player, width, height):
 		self.detectPlayer(player)
