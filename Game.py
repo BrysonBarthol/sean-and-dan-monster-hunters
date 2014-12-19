@@ -60,5 +60,5 @@ while True:
         screen.fill(bgColor)
         for block in level.blocks:
             screen.blit(block.image, block.rect)
-        #screen.blit(background.surface, background.rect)
+        screen.blit(player.image, player.rect)
         pygame.display.flip()

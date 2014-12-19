@@ -45,11 +45,6 @@ class Level():
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
 
-
-
-#-------Blocks
-
-
         #----Done with file---
 
         thingfile = open(thingMap, "r")
@@ -98,3 +93,4 @@ class Level():
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev)]
+                
