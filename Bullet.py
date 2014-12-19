@@ -1,7 +1,7 @@
 import pygame, math
 
 class Bullet():
-	def __init__(self, pos, direction):
+	def __init__(self, pos, direction, damage):
 		self.image = pygame.image.load("RSC/weapons/bullet.png")
 		self.rect = self.image.get_rect()
 		speed = 5
@@ -21,6 +21,7 @@ class Bullet():
 		self.place(pos)
 		self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
 		self.living = True
+		self.damage = 1
 		
 	def place(self, pos):
 		self.rect.center = pos

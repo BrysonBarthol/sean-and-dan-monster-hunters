@@ -1,7 +1,7 @@
 import pygame, math
 
 class Knife():
-	def __init__(self, pos, direction):
+	def __init__(self, pos, direction, damage):
 		self.image = pygame.image.load("RSC/weapons/bullet.png")
 		self.rect = self.image.get_rect()
 		speed = 5
@@ -19,6 +19,7 @@ class Knife():
 			self.offsety=0
 		self.place(pos)
 		self.living = True
+		self.damage = 1
 		
 	def place(self, pos):
 		self.rect.center = pos

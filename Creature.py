@@ -1,7 +1,7 @@
 import pygame, math
 
 class Creature():
-	def __init__(self, image, speed = [0,0], pos = [0,0]):
+	def __init__(self, image, speed = [0,0], pos = [0,0], health = 1):
 		self.image = pygame.image.load(image)
 		self.rect = self.image.get_rect()
 		self.speedx = speed[0]
@@ -12,6 +12,8 @@ class Creature():
 		self.didBounceY = False
 		self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
 		self.living = True
+		self.health = health
+		self.maxHealth = health
 		
 	def place(self, pos):
 		self.rect.center = pos
@@ -76,6 +78,10 @@ class Creature():
 			
 			self.image = self.images[self.frame]
 			
+	def hurt(self, amount=1):
+		self.health -= amount
+		if self.health <=0:
+			self.living = False 
 	
 	def distance(self, pt):
 		x1 = self.rect.center[0]
@@ -83,4 +89,5 @@ class Creature():
 		x2 = pt[0]
 		y2 = pt[1]
 		return math.sqrt(((x2-x1)**2) + ((y2-y1)**2))
+		
 		
