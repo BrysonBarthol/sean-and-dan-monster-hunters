@@ -14,6 +14,12 @@ class Leviathan(Demon):
 		self.rightImages = [pygame.image.load("RSC/Leviathan/LeviRight1.png"),
 							pygame.image.load("RSC/Leviathan/LeviRight2.png")]
 							
+	def shoot(self):
+		#pass
+		return Bullet(self.rect.center, self.facing) 0
+		self.changed = True
+		self.shooting = True
+	
 	def detectPlayer(self, player):
 		if self.direction == "up"
 			if self.rect.right+self.detectRadius > player.rect.left:
@@ -41,3 +47,4 @@ class Leviathan(Demon):
 							seen = True
 							
 		if seen:
+			
