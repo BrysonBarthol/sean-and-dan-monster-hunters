@@ -3,7 +3,6 @@ from Creature import Creature
 from Bullet import Bullet
 from Knife import Knife
 
-
 class Player(Creature):
     def __init__(self, guy, pos):
         Creature.__init__(self, "RSC/Player/DeanUp1.png", [0,0], pos)
