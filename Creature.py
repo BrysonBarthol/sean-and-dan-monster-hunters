@@ -14,6 +14,7 @@ class Creature():
 		self.living = True
 		self.health = health
 		self.maxHealth = health
+		self = pygame.transform.scale(self, [selfrect.width*4, selfrect.height*4])
 		
 	def place(self, pos):
 		self.rect.center = pos

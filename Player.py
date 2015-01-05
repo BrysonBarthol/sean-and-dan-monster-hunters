@@ -65,7 +65,7 @@ class Player(Creature):
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect(center = self.rect.center)
-		self.maxSpeed = 10
+		self.maxSpeed = 2
 		self.shooting = False
 		self.stabbing = False
 		
