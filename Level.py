@@ -10,6 +10,7 @@ class Level():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
+        self.hardBlocks = []
         self.levelChangeBlocks = []
         self.enemies = []
         self.players = []
@@ -40,9 +41,10 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "#":
-                    self.blocks += [Block("RSC/Block/bush.png",
+                    self.hardBlocks += [Block("RSC/Block/bush.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
+                    self.blocks += [self.hardBlocks[-1]]
                 if c == "*":
                     self.blocks += [Block("RSC/Block/block.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
@@ -100,4 +102,21 @@ class Level():
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev)]
-                
+                if c == "w":
+                    newlev = self.level[:6] + str(int(self.level[6])+1)
+                    self.levelChangeBlocks += [LevelChangeBlock(
+                                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                                (self.blockSize,self.blockSize),
+                                                                newlev)]
+                if c == "E":
+                    newlev = self.level[:6] + str(int(self.level[6])+1)
+                    self.levelChangeBlocks += [LevelChangeBlock(
+                                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                                (self.blockSize,self.blockSize),
+                                                                newlev)]
+                if c == "e":
+                    newlev = self.level[:6] + str(int(self.level[6])+1)
+                    self.levelChangeBlocks += [LevelChangeBlock(
+                                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                                (self.blockSize,self.blockSize),
+                                                                newlev)]

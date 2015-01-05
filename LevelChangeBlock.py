@@ -12,7 +12,7 @@ class LevelChangeBlock(Block):
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and
                 self.rect.top < other.rect.bottom):
-                #print "I'm going to ", self.newMap
+                print "I'm going to ", self.newMap
                 return True
         return False
 

@@ -53,6 +53,11 @@ while True:
         
         for player in players:
             player.update(screenWidth, screenHeight)
+            
+        for block in level.hardBlocks:
+            for player in players:
+                if block.playerCollide(player):
+                    player.go("stop")
 
         red = 0
         green = 0
@@ -61,6 +66,8 @@ while True:
         screen.fill(bgColor)
         for block in level.blocks:
             screen.blit(block.image, block.rect)
+        for levelChangeBlock in level.levelChangeBlocks:
+            screen.blit(levelChangeBlock.image, levelChangeBlock.rect)
         for player in players:
             screen.blit(player.image, player.rect)
         pygame.display.flip()
