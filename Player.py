@@ -31,7 +31,7 @@ class Player(Creature):
 							   pygame.image.load("RSC/Player/DeanLeft2.png")]
 			self.rightRangedImages = [pygame.image.load("RSC/Player/DeanRight1.png"),
 								pygame.image.load("RSC/Player/DeanRight1.png")]
-		else guy == "Sean":
+		else guy:
 			self.upImages = [pygame.image.load("RSC/Player/SamUp1.png"),
 							 pygame.image.load("RSC/Player/SamUp2.png")]
 			self.downImages = [pygame.image.load("RSC/Player/SamDown1.png"),
