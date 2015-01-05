@@ -1,5 +1,6 @@
 import pygame, math
 
+
 class Creature():
     def __init__(self, image, speed = [0,0], pos = [0,0], health = 1):
         self.image = pygame.image.load(image)
