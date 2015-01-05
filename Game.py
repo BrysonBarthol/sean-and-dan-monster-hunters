@@ -21,8 +21,8 @@ screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
 bgColor = r,g,b = 0, 0, 0
-level = Level("screen24", screenSize)
-player = level.player
+level = Level("screen24", ["Dan", "Sean"], screenSize)
+players = level.players
 
 #ammo = HUDAmmo
 #coins = HUDCoins
@@ -34,24 +34,25 @@ while True:
                 if event.type == pygame.QUIT: sys.exit()
                 if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
-                                player.go("up")
+                                players[0].go("up")
                         if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                                player.go("right")
+                                players[0].go("right")
                         if event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                                player.go("down")
+                                players[0].go("down")
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                                player.go("left")
+                                players[0].go("left")
                 if event.type == pygame.KEYUP:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
-                                player.go("stop up")
+                                players[0].go("stop up")
                         if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
-                                player.go("stop right")
+                                players[0].go("stop right")
                         if event.key == pygame.K_s or event.key == pygame.K_DOWN:
-                                player.go("stop down")
+                                players[0].go("stop down")
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                                player.go("stop left")
+                                players[0].go("stop left")
         
-
+        for player in players:
+            player.update(screenWidth, screenHeight)
 
         red = 0
         green = 0
@@ -60,5 +61,6 @@ while True:
         screen.fill(bgColor)
         for block in level.blocks:
             screen.blit(block.image, block.rect)
-        #screen.blit(background.surface, background.rect)
+        for player in players:
+            screen.blit(player.image, player.rect)
         pygame.display.flip()

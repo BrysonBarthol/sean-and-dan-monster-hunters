@@ -1,19 +1,22 @@
 import pygame, math, sys, time
 from Block import Block
 from LevelChangeBlock import LevelChangeBlock
+from Player import Player
 
 class Level():
-    def __init__(self, level, screenSize):
+    def __init__(self, level, names, screenSize):
         self.screenSize = screenSize
+        self.names = names
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
         self.levelChangeBlocks = []
         self.enemies = []
-        self.player = []
+        self.players = []
         self.blockSize = 50
         self.level = level
         self.load(level)
+        
         
 
 
@@ -45,11 +48,6 @@ class Level():
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
 
-
-
-#-------Blocks
-
-
         #----Done with file---
 
         thingfile = open(thingMap, "r")
@@ -67,7 +65,11 @@ class Level():
 
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
-#-------Blocks
+#-------Blocks  
+                if c == "@":
+                    if len(self.names) > 0:
+                        daName = self.names.pop()
+                        self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "N":
                     newlev = self.level[:7] + str(int(self.level[7])+1)
                     self.levelChangeBlocks += [LevelChangeBlock(
@@ -98,3 +100,4 @@ class Level():
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev)]
+                

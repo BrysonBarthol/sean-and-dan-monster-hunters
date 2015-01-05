@@ -47,4 +47,19 @@ class Leviathan(Demon):
 							seen = True
 							
 		if seen:
+			xdiff = player.rect.center[0]-self.rect.center[0]
+			ydiff = player.rect.center[1]-self.rect.center[1]
+			
+			if xdiff > 0: #to the right of the player
+				self.facing = "right"
+			elif xdiff < 0: #to the left
+				self.facing = "left"
+				
+			if ydiff > 0: #below
+				self.facing = "down"
+			elif ydiff < 0: #above
+				self.facing = "up"
+			
+			shoot()
+			
 			

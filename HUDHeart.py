@@ -4,20 +4,20 @@ from HUD import Text
 class HUDHearts():
         def __init__(self, pos):
                 hearts = 3
-                setImage()
+                self.image = setImage()
                 self.rect = self.image.get_rect(center = self.rect.center)
                 self.change = False
                 self.place(self, pos)        
         
         def setImage(self):
             if hearts == 1: 
-                pygame.image.load("RCS/HUD/heart1.png")
+                pygame.image.load("RSC/HUD/heart1.png")
             elif hearts == 2:
-                pygame.image.load("RCS/HUD/heart2.png")
+                pygame.image.load("RSC/HUD/heart2.png")
             elif hearts == 3:
-                pygame.image.load("RCS/HUD/heart3.png")
+                pygame.image.load("RSC/HUD/heart3.png")
             elif hearts == 4:
-                pygame.image.load("RCS/HUD/heart4.png")
+                pygame.image.load("RSC/HUD/heart4.png")
 
         def place(self, pos):
             self.rect.center = pos
