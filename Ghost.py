@@ -21,7 +21,7 @@ class Ghost(Creature):
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect(center = self.rect.center)
-		self.maxSpeed = 10
+		self.maxSpeed = 2
 		
 	def update(self, width, height):
 		Creature.update(self, width, height)
@@ -29,7 +29,7 @@ class Ghost(Creature):
 		self.changed = False
 		
 	def collidePlayer(self, other): #do damage, don't bounce
-		pass
+		hurt(player)
 		
 	def collideDemon(self, other):
 		if self != other:
