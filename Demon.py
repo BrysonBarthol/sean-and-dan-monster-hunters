@@ -21,7 +21,7 @@ class Demon(Creature):
 		self.maxWait = 60*.25
 		self.image = self.images[self.frame]
 		self.rect = self.image.get_rect(center = self.rect.center)
-		self.maxSpeed = 10
+		self.maxSpeed = 2
 		self.detectRadius = 32 #Play with this number
 		self.shooting = False
 	
@@ -33,7 +33,7 @@ class Demon(Creature):
 		self.changed = False
 		
 	def collidePlayer(self, other):
-		pass
+		hurt(player)
 		
 	def collideDemon(self, other):
 		if self != other:
