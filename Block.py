@@ -27,7 +27,7 @@ class Block():
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and
                 self.rect.top < other.rect.bottom):
-                print "Collide With: ", other
+                #print "Collide With: ", other
                 return True
         return False
 
