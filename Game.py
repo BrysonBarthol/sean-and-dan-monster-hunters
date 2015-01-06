@@ -41,6 +41,8 @@ while True:
                                 players[0].go("down")
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                                 players[0].go("left")
+                      #  if event.key == pygame.K_SPACE
+                             #   players[0].shoot
                 if event.type == pygame.KEYUP:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
                                 players[0].go("stop up")
@@ -50,6 +52,8 @@ while True:
                                 players[0].go("stop down")
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                                 players[0].go("stop left")
+                      #  if event.key == pygame.K_SPACE
+                             #   players[0].shoot
         
         for player in players:
             player.update(screenWidth, screenHeight)

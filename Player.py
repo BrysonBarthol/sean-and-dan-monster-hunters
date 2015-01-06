@@ -69,11 +69,11 @@ class Player(Creature):
         self.shooting = False
         self.stabbing = False
         
-    def stab(self):
-        pass
+    #def stab(self):
+     #   pass
         #return Knife(self.rect.center, self.facing) 0
-        self.changed = True
-        self.stabbing = True
+      #  self.changed = True
+      #  self.stabbing = True
     
     def shoot(self):
         #pass
