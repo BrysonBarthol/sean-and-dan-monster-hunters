@@ -85,11 +85,12 @@ class Creature():
             self.living = False
             
     def collideBullet(self, other):
-		if self != other:
-			if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
-				if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
-					if (self.radius + other.radius) > self.distance(other.rect.center):
-						#hurt() OR self.hurt = True? 
+        if self != other:
+            if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
+                if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
+                    if (self.radius + other.radius) > self.distance(other.rect.center):
+                        print "hello"
+                        #hurt() OR self.hurt = True? 
     
     def distance(self, pt):
         x1 = self.rect.center[0]
