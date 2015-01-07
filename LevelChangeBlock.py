@@ -2,9 +2,9 @@ import pygame, math, sys
 from Block import Block
 
 class LevelChangeBlock(Block):
-    def __init__(self, pos, size, newMap):
+    def __init__(self, pos, size, newlev):
         Block.__init__(self, "RSC/Block/LevelChangeBlock.png", pos, size)
-        self.newMap = newMap
+        self.newlev = newlev
 
 
     def playerCollide(self, other):
@@ -12,7 +12,7 @@ class LevelChangeBlock(Block):
             and self.rect.left < other.rect.right):
             if (self.rect.bottom > other.rect.top and
                 self.rect.top < other.rect.bottom):
-                print "I'm going to ", self.newMap
+                print "I'm going to ", self.newlev
                 return True
         return False
 
