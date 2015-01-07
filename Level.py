@@ -17,7 +17,7 @@ class Level():
         self.blockSize = 50
         self.level = level
         self.load(level)
-        
+
         
 
 
@@ -29,6 +29,7 @@ class Level():
         lines = geofile.readlines()
         geofile.close()
         newlines = []
+        
 
         #Clean up the file by stripping newlines!
         for line in lines:
