@@ -4,7 +4,7 @@ class Bullet():
 	def __init__(self, pos, direction, damage):
 		self.image = pygame.image.load("RSC/weapons/bullet.png")
 		self.rect = self.image.get_rect()
-		speed = 5
+		speed = 2
 		if facing == "up":
 			self.speedx = 0
 			self.speedy = -speed

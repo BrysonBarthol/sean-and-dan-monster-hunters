@@ -77,9 +77,11 @@ class Player(Creature):
     
     def shoot(self):
         #pass
-        return Bullet(self.rect.center, self.facing)
         self.changed = True
         self.shooting = True
+        print "POW POW"
+        return Bullet(self.rect.center, self.facing)
+        
             
     def update(self, width, height):
         Creature.update(self, width, height)
