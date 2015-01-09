@@ -64,10 +64,11 @@ while True:
                     player.go("stop")
         
         for levelChangeBlock in level.levelChangeBlocks:
+            #print levelChangeBlock.newlev
             for player in players:
                 if levelChangeBlock.playerCollide(player):
                     print "new level"
-                    level.load(newlev)
+                    level.load(levelChangeBlock.newlev, levelChangeBlock.kind)
                     
 
         red = 0
