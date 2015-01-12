@@ -98,25 +98,25 @@ class Level():
                             daName = self.names.pop()
                             self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "N":
-                    newlev = self.level[:7] + str(int(self.level[7])+1)
+                    newlev = self.level[:7] + str(int(self.level[7])-1)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize, self.blockSize),
                                                                 newlev, c)]
                 if c == "n":
-                    newlev = self.level[:7] + str(int(self.level[7])+1)
+                    newlev = self.level[:7] + str(int(self.level[7])-1)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "S":
-                    newlev = self.level[:7] + str(int(self.level[7])-1)
+                    newlev = self.level[:7] + str(int(self.level[7])+1)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "s":
-                    newlev = self.level[:7] + str(int(self.level[7])-1)
+                    newlev = self.level[:7] + str(int(self.level[7])+1)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),

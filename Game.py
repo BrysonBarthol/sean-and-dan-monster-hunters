@@ -8,6 +8,7 @@ from Level import Level
 #from HUDCoin import HUDCoins
 #from HUDHeart import HUDHearts
 from LevelChangeBlock import LevelChangeBlock
+from Bullet import Bullet
 
 pygame.init()
 win = False
@@ -55,12 +56,12 @@ while True:
                         if event.key == pygame.K_SPACE:
                                 bullets += [players[0].shoot]
         
-        if len(bullet):
-		if random.randint(0, .25*60) == 0:
-			balls += [Ball("images/Ball/ball.png",
-					  [random.randint(0,10), random.randint(0,10)],
-					  [random.randint(100, width-100), random.randint(100, height-100)])
-					  ]
+   #     if len(Bullet):
+         #   if random.randint(0, .25*60) == 0:
+             #   bullet += [Bullet("RSC/weapons/bullet.png",
+             #             [random.randint(0,10), random.randint(0,10)],
+              #            [random.randint(100, width-100), random.randint(100, height-100)])
+              #             ]
         
         for player in players:
             player.update(screenWidth, screenHeight)
@@ -89,4 +90,6 @@ while True:
             screen.blit(levelChangeBlock.image, levelChangeBlock.rect)
         for player in players:
             screen.blit(player.image, player.rect)
+        #for bullet in bullets:
+        #    screen.blit(bullet.image, bullet.rect)
         pygame.display.flip()
