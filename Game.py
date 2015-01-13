@@ -56,12 +56,12 @@ while True:
                         if event.key == pygame.K_SPACE:
                                 bullets += [players[0].shoot]
         
-   #     if len(Bullet):
-         #   if random.randint(0, .25*60) == 0:
-             #   bullet += [Bullet("RSC/weapons/bullet.png",
-             #             [random.randint(0,10), random.randint(0,10)],
-              #            [random.randint(100, width-100), random.randint(100, height-100)])
-              #             ]
+       # if len(Bullet):
+          #  if random.randint(0, .25*60) == 0:
+          #      bullet += [Bullet("RSC/weapons/bullet.png",
+          #                [random.randint(0,10), random.randint(0,10)],
+          #                [random.randint(100, width-100), random.randint(100, height-100)])
+           #                ]
         
         for player in players:
             player.update(screenWidth, screenHeight)
