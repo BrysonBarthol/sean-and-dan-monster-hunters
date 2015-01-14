@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, math, sys
 from Block import Block
 #from Deamon import Deamon
 #from Ghost import Ghost
@@ -14,6 +14,12 @@ pygame.init()
 win = False
 
 clock = pygame.time.Clock()
+
+bullets = []
+
+width = []
+
+height = []
 
 screenWidth = 1000 
 screenHeight = 700
@@ -43,7 +49,7 @@ while True:
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                                 players[0].go("left")
                         if event.key == pygame.K_SPACE:
-                                bullets += [players[0].shoot]
+                                bullets += player.shoot()
                 if event.type == pygame.KEYUP:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
                                 players[0].go("stop up")
@@ -54,14 +60,8 @@ while True:
                         if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                                 players[0].go("stop left")
                         if event.key == pygame.K_SPACE:
-                                bullets += [players[0].shoot]
+                                player.shoot("stop")
         
-       # if len(Bullet):
-          #  if random.randint(0, .25*60) == 0:
-          #      bullet += [Bullet("RSC/weapons/bullet.png",
-          #                [random.randint(0,10), random.randint(0,10)],
-          #                [random.randint(100, width-100), random.randint(100, height-100)])
-           #                ]
         
         for player in players:
             player.update(screenWidth, screenHeight)
@@ -77,6 +77,13 @@ while True:
                 if levelChangeBlock.playerCollide(player):
                     print "new level"
                     level.load(levelChangeBlock.newlev, levelChangeBlock.kind)
+        
+        for bullet in bullets:
+                bullet.update(width, height)
+                
+        for bullet in bullets:
+                if not bullet.living:
+                        bullets.remove(bullet)
                     
 
         red = 0
@@ -90,6 +97,6 @@ while True:
             screen.blit(levelChangeBlock.image, levelChangeBlock.rect)
         for player in players:
             screen.blit(player.image, player.rect)
-        #for bullet in bullets:
-        #    screen.blit(bullet.image, bullet.rect)
+        for bullet in bullets:
+            screen.blit(bullet.image, bullet.rect)
         pygame.display.flip()
