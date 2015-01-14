@@ -75,12 +75,12 @@ class Player(Creature):
       #  self.changed = True
       #  self.stabbing = True
     
-    def shoot(self):
-        #pass
-        self.changed = True
-        self.shooting = True
-        print "POW POW"
-        return Bullet(self.rect.center, self.facing)
+    def shoot(self, command = ""):
+        if command == "stop":
+            self.shooting = False
+        #if self.gun.coolDown == 0:
+            #self.gun.coolDown += 1
+        return [Bullet(self.rect.center, self.facing, 10)]
         
             
     def update(self, width, height):
