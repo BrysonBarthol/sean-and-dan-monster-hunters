@@ -2,6 +2,7 @@ import pygame, math, sys, time
 from Block import Block
 from LevelChangeBlock import LevelChangeBlock
 from Player import Player
+from Ghost import Ghost
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -12,7 +13,7 @@ class Level():
         self.blocks = []
         self.hardBlocks = []
         self.levelChangeBlocks = []
-        self.enemies = []
+        self.ghosts = []
         self.players = []
         self.blockSize = 50
         self.level = level
@@ -28,8 +29,8 @@ class Level():
             self.hardBlocks.remove(self.hardBlocks[0])
         while len(self.levelChangeBlocks) > 0:
             self.levelChangeBlocks.remove(self.levelChangeBlocks[0])
-        while len(self.enemies) > 0:
-            self.enemies.remove(self.enemies[0])
+        while len(self.ghosts) > 0:
+            self.ghosts.remove(self.ghosts[0])
         
             
         self.level = level
@@ -145,3 +146,6 @@ class Level():
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
+                if c == "G":
+                    self.ghosts += [Ghost(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
