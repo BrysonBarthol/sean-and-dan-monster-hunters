@@ -77,12 +77,20 @@ while True:
         
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
+            for block in level.hardBlocks:
+                bullet.collideBlock(block)
+            for enemy in level.ghosts:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
+                
         
         print len(bullets)        
         for bullet in bullets:
             if not bullet.living:
                 bullets.remove(bullet)
-                    
+        for enemy in level.ghosts:
+            if not enemy.living:
+                level.ghosts.remove(enemy)        
 
         red = 0
         green = 0
