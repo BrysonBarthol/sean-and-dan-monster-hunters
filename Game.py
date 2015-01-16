@@ -1,7 +1,7 @@
 import pygame, math, sys
 from Block import Block
 #from Deamon import Deamon
-#from Ghost import Ghost
+from Ghost import Ghost
 #from Leviathan import Leviathan
 from Level import Level
 #from HUDAmmo import HUDAmmo
@@ -26,6 +26,7 @@ screen = pygame.display.set_mode(screenSize)
 bgColor = r,g,b = 0, 0, 0
 level = Level("screen24", ["Dan", "Sean"], screenSize)
 players = level.players
+ghosts = level.ghosts
 
 #ammo = HUDAmmo
 #coins = HUDCoins
@@ -96,4 +97,6 @@ while True:
             screen.blit(player.image, player.rect)
         for bullet in bullets:
             screen.blit(bullet.image, bullet.rect)
+        for ghost in ghosts:
+            screen.blit(ghost.image, ghost.rect)
         pygame.display.flip()
