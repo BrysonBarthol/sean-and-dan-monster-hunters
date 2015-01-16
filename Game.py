@@ -17,10 +17,6 @@ clock = pygame.time.Clock()
 
 bullets = []
 
-width = []
-
-height = []
-
 screenWidth = 1000 
 screenHeight = 700
 
@@ -80,11 +76,12 @@ while True:
                     level.load(levelChangeBlock.newlev, levelChangeBlock.kind)
         
         for bullet in bullets:
-                bullet.update(width, height)
-                
+            bullet.update(screenWidth, screenHeight)
+        
+        print len(bullets)        
         for bullet in bullets:
-                if not bullet.living:
-                        bullets.remove(bullet)
+            if not bullet.living:
+                bullets.remove(bullet)
                     
 
         red = 0
