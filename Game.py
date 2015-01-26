@@ -1,6 +1,6 @@
 import pygame, math, sys
 from Block import Block
-#from Deamon import Deamon
+#from Demon import Demon
 from Ghost import Ghost
 #from Leviathan import Leviathan
 from Level import Level
@@ -63,6 +63,9 @@ while True:
         for player in players:
             player.update(screenWidth, screenHeight)
             
+        for ghost in ghosts:
+			ghost.update(screenWidth, screenHeight)
+            
         for block in level.hardBlocks:
             for player in players:
                 if block.playerCollide(player):
@@ -90,8 +93,8 @@ while True:
                 bullets.remove(bullet)
         for enemy in level.ghosts:
             if not enemy.living:
-                level.ghosts.remove(enemy)        
-
+                level.ghosts.remove(enemy)
+                
         red = 0
         green = 0
         blue = 0

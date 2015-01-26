@@ -82,3 +82,17 @@ class Ghost(Creature):
             if self.rect.top < 0 or self.rect.bottom > height:
                 self.speedy = -self.speedy
                 self.didBounceY = True
+                
+    #def go(self, direction):
+        if direction == "up":
+            self.facing = "up"
+            self.changed = True
+        if direction == "down":
+            self.facing = "down"
+            self.changed = True
+        if direction == "left":
+            self.facing = "left"
+            self.changed = True
+        if direction == "right":
+            self.facing = "right"
+            self.changed = True                
