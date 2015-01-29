@@ -1,4 +1,4 @@
-import pygame, math, sys, time
+import pygame, math, sys, time, os
 from Block import Block
 from LevelChangeBlock import LevelChangeBlock
 from Player import Player
@@ -21,8 +21,17 @@ class Level():
         self.blockSize = 50
         self.level = level
         self.load(level)
-
         
+
+    def killOldLevels(self, timeInSeconds):
+        for f in os.listdir("RSC/Maps/"):
+            if f[-5:] == ".tngs":
+                print f, time.time() - os.path.getmtime("RSC/Maps/"+f), timeInSeconds
+                if (time.time() - os.path.getmtime("RSC/Maps/"+f)) > timeInSeconds:
+                    print f
+                    os.remove("RSC/Maps/"+f)
+            
+    
     def unload(self):
         things = []
         line = []
@@ -43,7 +52,7 @@ class Level():
             for c in line:
                 thingString += c
             thingString += "\n"
-        print thingString
+        #print thingString
         
         thingMap="RSC/Maps/"+ self.level +".tngs"
         savedThingfile = open(thingMap, "w")
@@ -61,7 +70,8 @@ class Level():
 
     def load(self, level, source=None):  
         if source != None:
-            self.unload()          
+            self.unload()    
+        self.killOldLevels(30)
         self.level = level
         print self.level
         geoMap="RSC/Maps/"+ level +".lvl"

@@ -38,7 +38,7 @@ while True:
     while run:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT: 
-                    os.system("del RSC\\Maps\\*.tngs")
+                    level.killOldLevels(0)
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
@@ -93,7 +93,7 @@ while True:
                 enemy.collideBullet(bullet)
                 
         
-        print len(bullets)        
+        #print len(bullets)        
         for bullet in bullets:
             if not bullet.living:
                 bullets.remove(bullet)
