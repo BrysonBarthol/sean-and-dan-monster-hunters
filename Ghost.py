@@ -91,8 +91,8 @@ class Ghost(Creature):
           #  self.facing = "down"
           #  self.changed = True
        # if direction == "left":
-           # self.facing = "left"
-           # self.changed = True
+          # self.facing = "left"
+          # self.changed = True
        # if direction == "right":
           #  self.facing = "right"
-           # self.changed = True                
+          # self.changed = True                
