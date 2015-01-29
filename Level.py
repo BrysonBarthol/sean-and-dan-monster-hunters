@@ -34,9 +34,9 @@ class Level():
         #print len(things), len(things[0])
         
         for ghost in self.ghosts:
-            things[ghost.rect.center[1]/50][ghost.rect.center[1]/50] = "G"
+            things[ghost.rect.center[1]/50][ghost.rect.center[0]/50] = "G"
         for lc in self.levelChangeBlocks:
-            things[lc.rect.center[1]/50][lc.rect.center[1]/50] = lc.kind
+            things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         
         thingString = ""
         for line in things:
@@ -48,6 +48,7 @@ class Level():
         thingMap="RSC/Maps/"+ self.level +".tngs"
         savedThingfile = open(thingMap, "w")
         savedThingfile.write(thingString)
+        savedThingfile.close()
             
         while len(self.blocks) > 0:
             self.blocks.remove(self.blocks[0])
@@ -59,11 +60,13 @@ class Level():
             self.ghosts.remove(self.ghosts[0])
 
     def load(self, level, source=None):  
-        self.unload()          
+        if source != None:
+            self.unload()          
         self.level = level
         print self.level
         geoMap="RSC/Maps/"+ level +".lvl"
         thingMap="RSC/Maps/"+ level +".tng"
+        savedThingMap="RSC/Maps/"+ level +".tngs"
 
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -103,8 +106,10 @@ class Level():
                                     (self.blockSize,self.blockSize))]
 
         #----Done with file---
-
-        thingfile = open(thingMap, "r")
+        try:
+            thingfile = open(savedThingMap, "r")
+        except (OSError, IOError) as e:
+            thingfile = open(thingMap, "r")
         lines = thingfile.readlines()
         thingfile.close()
 

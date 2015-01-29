@@ -1,4 +1,4 @@
-import pygame, math, sys
+import pygame, math, sys, os
 from Block import Block
 #from Demon import Demon
 from Ghost import Ghost
@@ -37,7 +37,9 @@ run = True
 while True:
     while run:
         for event in pygame.event.get():
-                if event.type == pygame.QUIT: sys.exit()
+                if event.type == pygame.QUIT: 
+                    os.system("del RSC\\Maps\\*.tngs")
+                    sys.exit()
                 if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
                                 players[0].go("up")
