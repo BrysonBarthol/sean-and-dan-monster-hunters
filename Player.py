@@ -175,6 +175,15 @@ class Player(Creature):
             print self.rect
             self.speedx = 0
             self.speedy = 0
+            
+    #def moving:
+        #self.moving = True
+        #if self.moving = False:
+            #if direction == "stop up":
+                #if guy == "Dan":
+                    #self.images = pygame.image.load("RSC/Player/DeanStopDown.png")
+            #print "STAHP"
+            
 
 
 
