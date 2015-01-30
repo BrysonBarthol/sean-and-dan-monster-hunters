@@ -19,15 +19,15 @@ class Ghost(Creature):
                             pygame.image.load("RSC/Ghost/GhostRight2.png")]
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
-            if self.speedx >= 0:
-                self.facing = "down"
-            else:
+            if self.speedy >= 0 and self.speedx == 0:
                 self.facing = "up"
-        else:
-            if self.speedy >= 0:
-                self.facing = "right"
             else:
-                self.facing = "left"
+                self.facing = "down"
+        else:
+            if self.speedx >= 0:
+                self.facing = "up"
+            else:
+                self.facing = "down"
         
         self.changed = False
         self.images = self.downImages
@@ -37,7 +37,6 @@ class Ghost(Creature):
         self.maxWait = 60*.25
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect(center = self.rect.center)
-        
         
     def update(self, width, height):
         if self.didBounceX or self.didBounceY:
