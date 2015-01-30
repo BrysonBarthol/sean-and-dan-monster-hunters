@@ -9,7 +9,7 @@ from Level import Level
 #from HUDHeart import HUDHearts
 from LevelChangeBlock import LevelChangeBlock
 from Bullet import Bullet
-
+from MainMenu import Button
 pygame.init()
 win = False
 
@@ -23,18 +23,46 @@ screenHeight = 700
 screenSize = screenWidth, screenHeight
 screen = pygame.display.set_mode(screenSize)
 
+bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
+bgRect = bgImage.get_rect()
+
 bgColor = r,g,b = 0, 0, 0
 level = Level("screen24", ["Dan", "Sean"], screenSize)
 players = level.players
 ghosts = level.ghosts
 
-run = True
+playButton = Button([screenWidth/2, screenHeight-300], 
+                                     "RSC/MainMenu/playbutton.png", 
+                                     "RSC/MainMenu/playbuttonpressed.png")
+run = False
 #ammo = HUDAmmo
 #coins = HUDCoins
 #ammo = Score([400, 25], "Ammo: ", 36)
 #coins = Score([600, 25], "Coins: ", 36)
 
 while True:
+    while not run:
+            for event in pygame.event.get():
+                    if event.type == pygame.QUIT: sys.exit()
+                    if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_RETURN:
+                                    run = True
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                            playButton.click(event.pos)
+                    if event.type == pygame.MOUSEBUTTONUP:
+                            if playButton.release(event.pos):
+                                    run = True
+                                    
+            bgColor = r,g,b
+            screen.fill(bgColor)
+            screen.blit(bgImage, bgRect)
+            screen.blit(playButton.image, playButton.rect)
+            pygame.display.flip()
+            clock.tick(60)
+            
+            bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
+            bgRect = bgImage.get_rect()
+
     while run:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT: 
