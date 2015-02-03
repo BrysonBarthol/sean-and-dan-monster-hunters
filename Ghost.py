@@ -23,7 +23,7 @@ class Ghost(Creature):
                 self.facing = "up"
             else:
                 self.facing = "down"
-        else:
+        else: 
             if self.speedx >= 0:
                 self.facing = "up"
             else:
@@ -119,4 +119,13 @@ class Ghost(Creature):
            self.changed = True
         if direction == "right":
             self.facing = "right"
-            self.changed = True                
+            self.changed = True  
+            
+    #if self.speedx = 0 and self.speedy > 0:
+        #self.facing = "down"
+#   if self.speedx = 0 and self.speedy < 0:
+        #self.facing = "up"
+    #if self.speedy = 0 and self.speedx > 0:
+        #self.facing = "right"
+    #if self.speedy = 0 and self.speedx < 0:
+         #self.facing = "left"              
