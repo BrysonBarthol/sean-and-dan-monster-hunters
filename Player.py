@@ -6,7 +6,8 @@ from Knife import Knife
 class Player(Creature):
     def __init__(self, guy, pos):
         Creature.__init__(self, "RSC/Player/DeanUp1.png", [0,0], pos)
-        if guy == "Dan":
+        self.guy = guy
+        if self.guy == "Dan":
             self.upImages = [pygame.image.load("RSC/Player/DeanUp1.png"),
                              pygame.image.load("RSC/Player/DeanUp2.png")]
             self.downImages = [pygame.image.load("RSC/Player/DeanDown1.png"),
@@ -68,6 +69,7 @@ class Player(Creature):
         self.maxSpeed = 3
         self.shooting = False
         self.stabbing = False
+        self.moving = False
         
     #def stab(self):
      #   pass
@@ -102,21 +104,24 @@ class Player(Creature):
                 #print "hit xWall"
     
     def animate(self):
-        if self.waitCount < self.maxWait:
-            self.waitCount += 1
-        else:
-            self.waitCount = 0
-            self.changed = True
-            if self.frame < self.maxFrame:
-                self.frame += 1
+        if self.moving:
+            if self.waitCount < self.maxWait:
+                self.waitCount += 1
             else:
-                self.frame = 0
-                if self.shooting:
-                    self.shooting = False
-                    self.images = self.upImages
-                if self.stabbing:
-                    self.stabbing = False
-                    self.images = self.upImages
+                self.waitCount = 0
+                self.changed = True
+                if self.frame < self.maxFrame:
+                    self.frame += 1
+                else:
+                    self.frame = 0
+                    if self.shooting:
+                        self.shooting = False
+                        self.images = self.upImages
+                    if self.stabbing:
+                        self.stabbing = False
+                        self.images = self.upImages
+        else:
+            self.waitCount = self.maxWait
         
         if self.changed:    
             if self.facing == "up":
@@ -146,27 +151,36 @@ class Player(Creature):
             self.facing = "up"
             self.changed = True
             self.speedy = -self.maxSpeed
+            self.moving = True
         elif direction == "stop up":
             self.speedy = 0
+            self.changed = True
+            self.moving = False
         elif direction == "down":
             self.facing = "down"
             self.changed = True
             self.speedy = self.maxSpeed
+            self.moving = True
         elif direction == "stop down":
             self.speedy = 0
+            self.moving = False
             
         if direction == "right":
             self.facing = "right"
             self.changed = True
             self.speedx = self.maxSpeed
+            self.moving = True
         elif direction == "stop right":
             self.speedx = 0
+            self.moving = False
         elif direction == "left":
             self.facing = "left"
             self.changed = True
             self.speedx = -self.maxSpeed
+            self.moving = True
         elif direction == "stop left":
             self.speedx = 0
+            self.moving = False
         elif direction == "stop":
             print self.rect
             self.speedx = -self.speedx
@@ -175,16 +189,9 @@ class Player(Creature):
             print self.rect
             self.speedx = 0
             self.speedy = 0
+            self.moving = False
             
-    #def moving:
-        #self.moving = True
-        #if self.moving = False:
-            #if direction == "stop up":
-                #if guy == "Dan":
-                    #self.images = pygame.image.load("RSC/Player/DeanStopDown.png")
-            #print "STAHP"
-            
-
+ 
 
 
 
