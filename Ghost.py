@@ -19,15 +19,15 @@ class Ghost(Creature):
                             pygame.image.load("RSC/Ghost/GhostRight2.png")]
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
-            if self.speedy >= 0 and self.speedx == 0:
-                self.facing = "up"
-            else:
+                if self.speedx >= 0:
+                    self.facing = "right"
+                else:
+                    self.facing = "left"
+        else:
+            if self.speedy >= 0:
                 self.facing = "down"
-        else: 
-            if self.speedx >= 0:
-                self.facing = "up"
             else:
-                self.facing = "down"
+                self.facing = "up"
         
         self.changed = False
         self.images = self.downImages
@@ -43,14 +43,14 @@ class Ghost(Creature):
             self.changed = True
             if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:
-                    self.facing = "down"
-                else:
-                    self.facing = "up"
-            else:
-                if self.speedy >= 0:
                     self.facing = "right"
                 else:
                     self.facing = "left"
+            else:
+                if self.speedy >= 0:
+                    self.facing = "down"
+                else:
+                    self.facing = "up"
         Creature.update(self, width, height)
         self.animate()
         self.changed = False
@@ -123,7 +123,7 @@ class Ghost(Creature):
             
     #if self.speedx = 0 and self.speedy > 0:
         #self.facing = "down"
-#   if self.speedx = 0 and self.speedy < 0:
+    #if self.speedx = 0 and self.speedy < 0:
         #self.facing = "up"
     #if self.speedy = 0 and self.speedx > 0:
         #self.facing = "right"
