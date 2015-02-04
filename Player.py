@@ -191,6 +191,9 @@ class Player(Creature):
             self.speedy = 0
             self.moving = False
             
+    #def hit:
+        
+            
  
 
 
