@@ -30,15 +30,22 @@ bgColor = r,g,b = 0, 0, 0
 level = Level("screen24", ["Dan", "Sean"], screenSize)
 players = level.players
 ghosts = level.ghosts
+leviathans = level.leviathans
 
 playButton = Button([screenWidth/2, screenHeight-300], 
                                      "RSC/MainMenu/playbutton.png", 
                                      "RSC/MainMenu/playbuttonpressed.png")
+
 run = False
 #ammo = HUDAmmo
 #coins = HUDCoins
 #ammo = Score([400, 25], "Ammo: ", 36)
 #coins = Score([600, 25], "Coins: ", 36)
+
+pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
+pygame.mixer.music.play(-1, 0.0)
+bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
+bgRect = bgImage.get_rect()
 
 while True:
     while not run:
@@ -52,7 +59,6 @@ while True:
                     if event.type == pygame.MOUSEBUTTONUP:
                             if playButton.release(event.pos):
                                     run = True
-                                    
             bgColor = r,g,b
             screen.fill(bgColor)
             screen.blit(bgImage, bgRect)
@@ -60,9 +66,10 @@ while True:
             pygame.display.flip()
             clock.tick(60)
             
-            bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
-            bgRect = bgImage.get_rect()
-
+            
+    pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
+    pygame.mixer.music.play(-1, 0.0)        
+            
     while run:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT: 
@@ -99,6 +106,9 @@ while True:
             
         for ghost in ghosts:
             ghost.update(screenWidth, screenHeight)
+        
+        for leviathan in leviathans:
+            leviathan.update(players, screenWidth, screenHeight)
             
         for block in level.hardBlocks:
             for player in players:
@@ -144,4 +154,6 @@ while True:
             screen.blit(bullet.image, bullet.rect)
         for ghost in ghosts:
             screen.blit(ghost.image, ghost.rect)
+        for leviathan in leviathans:
+            screen.blit(leviathan.image, leviathan.rect)
         pygame.display.flip()

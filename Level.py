@@ -3,6 +3,7 @@ from Block import Block
 from LevelChangeBlock import LevelChangeBlock
 from Player import Player
 from Ghost import Ghost
+from Leviathan import Leviathan
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -15,6 +16,7 @@ class Level():
         
         self.levelChangeBlocks = []
         self.ghosts = []
+        self.leviathans = []
         
         self.players = []
         
@@ -44,6 +46,8 @@ class Level():
         
         for ghost in self.ghosts:
             things[ghost.rect.center[1]/50][ghost.rect.center[0]/50] = "G"
+        for leviathan in self.leviathans:
+            things[leviathan.rect.center[1]/50][leviathan.rect.center[0]/50] = "L"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         
@@ -67,6 +71,8 @@ class Level():
             self.levelChangeBlocks.remove(self.levelChangeBlocks[0])
         while len(self.ghosts) > 0:
             self.ghosts.remove(self.ghosts[0])
+        while len(self.leviathans) > 0:
+            self.leviathans.remove(self.leviathans[0])
 
     def load(self, level, source=None):  
         if source != None:
@@ -190,4 +196,8 @@ class Level():
                                                                 newlev, c)]
                 if c == "G":
                     self.ghosts += [Ghost(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                
+                if c == "L":
+                    self.leviathans += [Leviathan(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
