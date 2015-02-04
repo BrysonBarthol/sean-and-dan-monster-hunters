@@ -85,7 +85,7 @@ class Demon(Creature):
 						if self.rect.top+self.detectRadius > other.rect.bottom:
 							seen = True
 							
-		if seen:
+		if self.seen == True:
 			xdiff = player.rect.center[0]-self.rect.center[0]
 			ydiff = player.rect.center[1]-self.rect.center[1]
 			

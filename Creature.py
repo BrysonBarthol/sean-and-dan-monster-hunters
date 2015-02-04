@@ -2,7 +2,7 @@ import pygame, math
 from Bullet import Bullet
 
 class Creature():
-    def __init__(self, image, speed = [0,0], pos = [0,0], health = 1):
+    def __init__(self, image, speed = [0,0], pos = [0,0], health = 1, maxHealth = 1):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -13,7 +13,7 @@ class Creature():
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.living = True
         self.health = health
-        self.maxHealth = health
+        self.maxHealth = maxHealth
         self.place(pos)
         
     def place(self, pos):
@@ -83,6 +83,11 @@ class Creature():
         self.health -= amount
         if self.health <=0:
             self.living = False
+            
+    def heal(self, amount=1):
+        self.health += amount
+        if self.health > self.maxHealth:
+            self.health = self.maxHealth
             
     def collideBullet(self, other):
         if self != other:
