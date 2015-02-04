@@ -31,18 +31,18 @@ class Leviathan(Demon):
     def detectPlayer(self, player):
         if self.seen == True:
             if xdiff > 0: #to the right of the player
-				self.speed = 0
+                self.speed = 0
                 self.facing = "right"
                 
             elif xdiff < 0: #to the left
-				self.speed = 0
+                self.speed = 0
                 self.facing = "left"
                 
             if ydiff > 0: #below
-				self.speed = 0
+                self.speed = 0
                 self.facing = "down"
             elif ydiff < 0: #above
-				self.speed = 0
+                self.speed = 0
                 self.facing = "up"
             
                 shoot()
