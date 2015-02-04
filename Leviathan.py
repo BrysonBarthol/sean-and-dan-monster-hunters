@@ -8,7 +8,8 @@ class Leviathan(Demon):
     def __init__(self, pos):
         image = ("RSC/Leviathan/LeviUp1.png")
         speed = [1,0]
-        Demon.__init__(self, "RSC/Leviathan/LeviDown1.png", speed, pos)
+        self.seen = False
+        Demon.__init__(self,pos)
         self.upImages = [pygame.image.load("RSC/Leviathan/LeviUp1.png"),
                             pygame.image.load("RSC/Leviathan/LeviUp2.png")]
         self.downImages = [pygame.image.load("RSC/Leviathan/LeviDown1.png"),
@@ -30,7 +31,7 @@ class Leviathan(Demon):
         self.shooting = True
                             
     def detectPlayer(self, player):
-        if seen:
+        if self.seen == True:
             if xdiff > 0: #to the right of the player
                 self.speed = 0
                 self.facing = "right"
