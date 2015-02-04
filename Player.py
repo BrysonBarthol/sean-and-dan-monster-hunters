@@ -5,7 +5,7 @@ from Knife import Knife
 
 class Player(Creature):
     def __init__(self, guy, pos):
-        Creature.__init__(self, "RSC/Player/DeanUp1.png", [0,0], pos)
+        Creature.__init__(self, "RSC/Player/DeanUp1.png", [0,0], pos, 9, 9)
         self.guy = guy
         if self.guy == "Dan":
             self.upImages = [pygame.image.load("RSC/Player/DeanUp1.png"),
@@ -191,7 +191,7 @@ class Player(Creature):
             self.speedy = 0
             self.moving = False
             
-    #def hit:
+    
         
             
  

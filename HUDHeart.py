@@ -2,12 +2,13 @@ import pygame, math, sys
 from HUD import Text
 
 class HUDHearts():
-        def __init__(self, pos):
+        def __init__(self, pos, player):
                 hearts = 3
                 self.image = setImage()
                 self.rect = self.image.get_rect(center = self.rect.center)
                 self.change = False
-                self.place(self, pos)        
+                self.place(self, pos)  
+                      
         
         def setImage(self):
             if hearts == 1: 
