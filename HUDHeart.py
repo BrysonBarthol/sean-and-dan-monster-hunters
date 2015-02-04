@@ -1,5 +1,6 @@
 import pygame, math, sys
 from HUD import Text
+from Player import Player
 
 class HUDHearts():
         def __init__(self, pos, player):
