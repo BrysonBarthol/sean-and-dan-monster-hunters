@@ -55,13 +55,12 @@ class Ghost(Creature):
         self.animate()
         self.changed = False
         
-    def collidePlayer(self, other): #do damage, don't bounce
+    def collidePlayer(self, other):
         if self != other:
             if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
                 if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                     if (self.radius + other.radius) > self.distance(other.rect.center):
                         pass
-                        #hurt(player) OR player.hurt = True?
         
     def collideDemon(self, other):
         if self != other:
@@ -119,13 +118,4 @@ class Ghost(Creature):
            self.changed = True
         if direction == "right":
             self.facing = "right"
-            self.changed = True  
-            
-    #if self.speedx = 0 and self.speedy > 0:
-        #self.facing = "down"
-    #if self.speedx = 0 and self.speedy < 0:
-        #self.facing = "up"
-    #if self.speedy = 0 and self.speedx > 0:
-        #self.facing = "right"
-    #if self.speedy = 0 and self.speedx < 0:
-         #self.facing = "left"              
+            self.changed = True              
