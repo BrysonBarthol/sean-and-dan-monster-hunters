@@ -2,7 +2,7 @@ import pygame, math, sys, os
 from Block import Block
 #from Demon import Demon
 from Ghost import Ghost
-#from Leviathan import Leviathan
+from Leviathan import Leviathan
 from Level import Level
 #from HUDAmmo import HUDAmmo
 #from HUDCoin import HUDCoins
