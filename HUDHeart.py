@@ -3,45 +3,22 @@ from HUD import Text
 from Player import Player
 
 class HUDHearts():
-        def __init__(self, pos, player):
-                hearts = 3
-                self.image = setImage()
-                self.rect = self.image.get_rect(center = self.rect.center)
-                self.change = False
-                self.place(self, pos)  
-                      
+    def __init__(self, pos, player):
+        self.player = player
+        self.maxHearts = self.player.maxHealth/3
+        self.setImages(self)
+        self.place(pos)
+        self.heart_3 = pygame.image.load("RSC/HUD/heart3.png"
+        self.heart_2 = pygame.image.load("RSC/HUD/heart2.png"
+        self.heart_1 = pygame.image.load("RSC/HUD/heart1.png"
+        self.heart_0 = pygame.image.load("RSC/HUD/heart1.png"
+        self.heart_1-3 = pygame.image.load("RSC/HUD/heart1.3.png"
+        self.heart_2-3 = pygame.image.load("RSC/HUD/heart2.3.png"
         
-        def setImage(self):
-            if hearts == 1: 
-                pygame.image.load("RSC/HUD/heart1.png")
-            elif hearts == 2:
-                pygame.image.load("RSC/HUD/heart2.png")
-            elif hearts == 3:
-                pygame.image.load("RSC/HUD/heart3.png")
-            elif hearts == 4:
-                pygame.image.load("RSC/HUD/heart4.png")
-
-        def place(self, pos):
-            self.rect.center = pos
-             
-        def update(self):
-                if self.change:
-                        self.image = 
-                        self.rect = self.image.get_rect(center = self.rect.center)
-                        self.change = False
         
-        def setHearts(self, hearts):
-                self.hearts = hearts
-                self.change = True
-                
-        def increaseHearts(self, amount = 1):
-                self.hearts += amount
-                self.change = True
-                
-        def decreaseHearts(self, amount = -1):
-                self.hearts += amount
-                self.change = True
-                
-        def resetHearts(self):
-                self.hearts = 3
-                self.change = True
+    def place(self, pos):
+        pass
+        
+    def setImages(self):
+        if self.player.health == 12:
+            self.images = 
