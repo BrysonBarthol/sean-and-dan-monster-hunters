@@ -3,6 +3,7 @@ from Block import Block
 from LevelChangeBlock import LevelChangeBlock
 from Player import Player
 from Ghost import Ghost
+from Demon import Demon
 from Leviathan import Leviathan
 
 class Level():
@@ -17,6 +18,7 @@ class Level():
         self.levelChangeBlocks = []
         self.ghosts = []
         self.leviathans = []
+        self.demons = []
         
         self.players = []
         
@@ -48,6 +50,8 @@ class Level():
             things[ghost.rect.center[1]/50][ghost.rect.center[0]/50] = "G"
         for leviathan in self.leviathans:
             things[leviathan.rect.center[1]/50][leviathan.rect.center[0]/50] = "L"
+        for demon in self.demons:
+            things[demon.rect.center[1]/50][demon.rect.center[0]/50] = "D"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         
@@ -71,6 +75,8 @@ class Level():
             self.levelChangeBlocks.remove(self.levelChangeBlocks[0])
         while len(self.ghosts) > 0:
             self.ghosts.remove(self.ghosts[0])
+        while len(self.demons) > 0:
+            self.demons.remove(self.demons[0])
         while len(self.leviathans) > 0:
             self.leviathans.remove(self.leviathans[0])
 
@@ -196,6 +202,9 @@ class Level():
                                                                 newlev, c)]
                 if c == "G":
                     self.ghosts += [Ghost(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                if c == "D":
+                    self.demons += [Demon(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 
                 if c == "L":

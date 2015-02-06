@@ -1,12 +1,9 @@
 import pygame, math, sys, os
 from Block import Block
-#from Demon import Demon
+from Demon import Demon
 from Ghost import Ghost
 from Leviathan import Leviathan
 from Level import Level
-#from HUDAmmo import HUDAmmo
-#from HUDCoin import HUDCoins
-#from HUDHeart import HUDHearts
 from LevelChangeBlock import LevelChangeBlock
 from Bullet import Bullet
 from MainMenu import Button
@@ -31,6 +28,7 @@ level = Level("screen24", ["Dan", "Sean"], screenSize)
 players = level.players
 ghosts = level.ghosts
 leviathans = level.leviathans
+demons = level.demons
 
 playButton = Button([screenWidth/2, screenHeight-300], 
                                      "RSC/MainMenu/playbutton.png", 
@@ -109,6 +107,9 @@ while True:
         
         for leviathan in leviathans:
             leviathan.update(players, screenWidth, screenHeight)
+        
+        for demon in demons:
+            demon.update(players, screenWidth, screenHeight)
             
         for block in level.hardBlocks:
             for player in players:
@@ -129,6 +130,12 @@ while True:
             for enemy in level.ghosts:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+            for enemy in level.demons:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
+            for enemy in level.leviathans:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
                 
         
         #print len(bullets)        
@@ -138,6 +145,15 @@ while True:
         for enemy in level.ghosts:
             if not enemy.living:
                 level.ghosts.remove(enemy)
+
+        for enemy in level.leviathans:
+            if not enemy.living:
+                level.leviathans.remove(enemy)
+
+        for enemy in level.demons:
+            if not enemy.living:
+                level.demons.remove(enemy)
+
                 
         red = 0
         green = 0
@@ -154,6 +170,8 @@ while True:
             screen.blit(bullet.image, bullet.rect)
         for ghost in ghosts:
             screen.blit(ghost.image, ghost.rect)
+        for demon in demons:
+            screen.blit(demon.image, demon.rect)
         for leviathan in leviathans:
             screen.blit(leviathan.image, leviathan.rect)
         pygame.display.flip()

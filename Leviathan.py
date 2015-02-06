@@ -20,6 +20,17 @@ class Leviathan(Demon):
                             pygame.image.load("RSC/Leviathan/LeviRight2.png")]                   
         self.images = self.downImages
         self.image = self.images[self.frame]
+        
+        if self.speedx >= 0:
+            self.facing = "right"
+        else:
+            self.facing = "left"
+    
+    def update(self, player, width, height):
+        if self.speedx >= 0:
+            self.facing = "right"
+        else:
+            self.facing = "left"
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
