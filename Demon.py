@@ -4,6 +4,8 @@ from Creature import Creature
 class Demon(Creature):
     def __init__(self, pos):
         Creature.__init__(self, "RSC/Demon/DemonDown1.png", [0,0], pos)
+        self.speedx = 0
+        self.speedy = 2
         self.upImages = [pygame.image.load("RSC/Demon/DemonUp1.png"),
                             pygame.image.load("RSC/Demon/DemonUp2.png")]
         self.downImages = [pygame.image.load("RSC/Demon/DemonDown1.png"),
@@ -25,11 +27,22 @@ class Demon(Creature):
         self.maxSpeed = 2
         self.detectRadius = 32 #Play with this number
         self.shooting = False
+      
+        if self.speedy >= 0:
+            self.facing = "down"
+        else:
+            self.facing = "up"
     
     def update(self, players, width, height):
         for player in players:
             self.detectPlayer(player)
         self.speed = [self.speedx, self.speedy]
+        if self.didBounceX or self.didBounceY:
+            self.changed = True
+        if self.speedy >= 0:
+            self.facing = "down"
+        else:
+            self.facing = "up"            
         Creature.update(self, width, height)
         self.animate()
         self.changed = False

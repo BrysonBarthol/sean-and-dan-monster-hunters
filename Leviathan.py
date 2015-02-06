@@ -7,7 +7,8 @@ from Player import Player
 class Leviathan(Demon):
     def __init__(self, pos):
         image = ("RSC/Leviathan/LeviUp1.png")
-        speed = [1,0]
+        self.speedx = 1
+        self.speedy = 0
         self.seen = False
         Demon.__init__(self,pos)
         self.upImages = [pygame.image.load("RSC/Leviathan/LeviUp1.png"),
