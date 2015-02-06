@@ -5,6 +5,7 @@ class Creature():
     def __init__(self, image, speed = [0,0], pos = [0,0], health = 1, maxHealth = 1):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
+        self.facing = "up"
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]
