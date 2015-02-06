@@ -1,6 +1,6 @@
 import pygame, math, sys, os
 from Block import Block
-#from Demon import Demon
+from Demon import Demon
 from Ghost import Ghost
 from Leviathan import Leviathan
 from Level import Level
@@ -129,6 +129,9 @@ while True:
             for enemy in level.ghosts:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+            for enemy in level.leviathans:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
                 
         
         #print len(bullets)        
@@ -138,6 +141,9 @@ while True:
         for enemy in level.ghosts:
             if not enemy.living:
                 level.ghosts.remove(enemy)
+        for enemy in level.leviathans:
+            if not enemy.living:
+                level.leviathans.remove(enemy)
                 
         red = 0
         green = 0

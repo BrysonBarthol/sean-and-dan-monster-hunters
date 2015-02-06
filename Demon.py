@@ -12,7 +12,7 @@ class Demon(Creature):
 							pygame.image.load("RSC/Demon/DemonLeft2.png")]
 		self.rightImages = [pygame.image.load("RSC/Demon/DemonRight1.png"),
 							pygame.image.load("RSC/Demon/DemonRight2.png")]
-		self.facing = "down"
+		#self.facing = "down"
 		self.changed = False
 		self.images = self.downImages
 		self.frame = 0
