@@ -153,50 +153,65 @@ class Level():
                             daName = self.names.pop()
                             self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "N":
+                    
                     newlev = self.level[:7] + str(int(self.level[7])-1)
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/NDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize, self.blockSize),
                                                                 newlev, c)]
                 if c == "n":
+                    
                     newlev = self.level[:7] + str(int(self.level[7])-1)
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "S":
+                    
                     newlev = self.level[:7] + str(int(self.level[7])+1)
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/SDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "s":
+                    
                     newlev = self.level[:7] + str(int(self.level[7])+1)
-                    self.levelChangeBlocks += [LevelChangeBlock(
+                    self.levelChangeBlocks += [LevelChangeBlock("RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "W":
+                    
                     newlev = self.level[:6] + str(int(self.level[6])-1) + self.level[7]
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/WDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "w":
+                    
                     newlev = self.level[:6] + str(int(self.level[6])-1) + self.level[7]
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "E":
+                    
                     newlev = self.level[:6] + str(int(self.level[6])+1) + self.level[7]
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/EDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "e":
+                    
                     newlev = self.level[:6] + str(int(self.level[6])+1) + self.level[7]
                     self.levelChangeBlocks += [LevelChangeBlock(
+                                                                "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
