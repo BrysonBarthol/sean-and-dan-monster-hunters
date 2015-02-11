@@ -1,5 +1,6 @@
 import pygame, math
 from Demon import Demon
+from Creature import Creature
 from Bullet import Bullet
 from Player import Player
 
@@ -7,10 +8,10 @@ from Player import Player
 class Leviathan(Demon):
     def __init__(self, pos):
         image = ("RSC/Leviathan/LeviUp1.png")
-        self.speedx = 1
-        self.speedy = 0
         self.seen = False
         Demon.__init__(self,pos)
+        self.speedx = 1
+        self.speedy = 0
         self.upImages = [pygame.image.load("RSC/Leviathan/LeviUp1.png"),
                             pygame.image.load("RSC/Leviathan/LeviUp2.png")]
         self.downImages = [pygame.image.load("RSC/Leviathan/LeviDown1.png"),
@@ -28,10 +29,16 @@ class Leviathan(Demon):
             self.facing = "left"
     
     def update(self, player, width, height):
+        self.speed = [self.speedx, self.speedy]
+        if self.didBounceX or self.didBounceY:
+            self.changed = True
         if self.speedx >= 0:
             self.facing = "right"
         else:
             self.facing = "left"
+        Creature.update(self, width, height)
+        self.animate()
+        self.changed = False
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
