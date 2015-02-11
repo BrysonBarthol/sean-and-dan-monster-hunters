@@ -7,6 +7,7 @@ from Level import Level
 from LevelChangeBlock import LevelChangeBlock
 from Bullet import Bullet
 from MainMenu import Button
+from HUDHeart import HUDHearts
 pygame.init()
 win = False
 
@@ -45,6 +46,8 @@ pygame.mixer.music.play(-1, 0.0)
 bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
 bgRect = bgImage.get_rect()
 
+HUDs = []
+
 while True:
     while not run:
             for event in pygame.event.get():
@@ -66,7 +69,8 @@ while True:
             
             
     pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
-    pygame.mixer.music.play(-1, 0.0)        
+    pygame.mixer.music.play(-1, 0.0) 
+    HUDs += [HUDHearts([screenWidth-60, 10],players[0])]  
             
     while run:
         for event in pygame.event.get():
@@ -110,6 +114,13 @@ while True:
         
         for demon in demons:
             demon.update(players, screenWidth, screenHeight)
+        
+        for hud in HUDs:
+            hud.update()    
+            
+        for ghost in ghosts:
+            for player in players:
+                player.collideMonster(ghost)
             
         for block in level.hardBlocks:
             for player in players:
@@ -174,4 +185,6 @@ while True:
             screen.blit(demon.image, demon.rect)
         for leviathan in leviathans:
             screen.blit(leviathan.image, leviathan.rect)
+        for hud in HUDs:
+            screen.blit(hud.image, hud.rect)
         pygame.display.flip()
