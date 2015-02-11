@@ -70,6 +70,9 @@ class Player(Creature):
         self.shooting = False
         self.stabbing = False
         self.moving = False
+        self.maxHurtDelay = 30 * 2
+        self.hurtDelay = 0
+        self.invincible = False
         
     #def stab(self):
      #   pass
@@ -89,6 +92,10 @@ class Player(Creature):
         Creature.update(self, width, height)
         self.animate()
         self.changed = False
+        if self.hurtDelay > 0:
+            self.hurtDelay -= 1
+        else:
+            self.invincible = False
         
     def collideWall(self, width, height):
         if not self.didBounceX:
@@ -145,6 +152,15 @@ class Player(Creature):
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if (self.radius + other.radius) > self.distance(other.rect.center):
                     self.hurt()
+    
+    def hurt(self, amount=1):
+        if not self.invincible:
+            self.health -= amount
+            self.invincible = True
+            self.hurtDelay = self.maxHurtDelay
+        
+        if self.health <=0:
+            self.living = False
             
     def go(self, direction):
         if direction == "up":
