@@ -17,7 +17,7 @@ class HUDHearts():
         
         
     def place(self, pos):
-        pass
+        self.rect.topleft = tos
         
     def setImages(self):
         if self.player.health == 12:
@@ -46,3 +46,4 @@ class HUDHearts():
             self.images = [self.heart_1_3, self.heart_0]
         elif self.player.health == 0:
             self.images = [self.heart_0, self.heart_0]
+        self.rects
