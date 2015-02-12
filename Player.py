@@ -73,6 +73,10 @@ class Player(Creature):
         self.maxHurtDelay = 30 * 2
         self.hurtDelay = 0
         self.invincible = False
+        self.living = True
+        
+   # def living():
+    #    if self.living
         
     #def stab(self):
      #   pass

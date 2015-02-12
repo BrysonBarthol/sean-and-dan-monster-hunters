@@ -121,6 +121,14 @@ while True:
         for ghost in ghosts:
             for player in players:
                 player.collideMonster(ghost)
+                
+        for leviathan in leviathans:
+            for player in players:
+                player.collideMonster(leviathan)
+                
+        for demon in demons:
+            for player in players:
+                player.collideMonster(demon)
             
         for block in level.hardBlocks:
             for player in players:
