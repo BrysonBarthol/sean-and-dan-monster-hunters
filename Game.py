@@ -72,7 +72,7 @@ while True:
     pygame.mixer.music.play(-1, 0.0) 
     HUDs += [HUDHearts([screenWidth-60, 10],players[0])]  
             
-    while run:
+    while run and players[0].living:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT: 
                     level.killOldLevels(0)
@@ -196,3 +196,28 @@ while True:
         for hud in HUDs:
             screen.blit(hud.image, hud.rect)
         pygame.display.flip()
+        
+    bgImage = pygame.image.load("RSC/MainMenu/gameover.png").convert()
+    bgRect = bgImage.get_rect()
+    
+    while run and not players[0].living:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                playButton.click(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if playButton.release(event.pos):
+                    run = True
+                    level.killOldLevels(0)
+                    level = Level("screen24", ["Dan", "Sean"], screenSize)
+                    players = level.players
+                    ghosts = level.ghosts
+                    leviathans = level.leviathans
+                    demons = level.demons
+                    
+        bgColor = r,g,b
+        screen.fill(bgColor)
+        screen.blit(bgImage, bgRect)
+        screen.blit(playButton.image, playButton.rect)
+        pygame.display.flip()
+        clock.tick(60)
