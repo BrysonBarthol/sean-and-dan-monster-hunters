@@ -75,8 +75,7 @@ class Player(Creature):
         self.invincible = False
         self.living = True
         
-   # def living():
-    #    if self.living
+
         
     #def stab(self):
      #   pass
