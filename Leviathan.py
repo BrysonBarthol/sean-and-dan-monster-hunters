@@ -32,10 +32,10 @@ class Leviathan(Demon):
         self.speed = [self.speedx, self.speedy]
         if self.didBounceX or self.didBounceY:
             self.changed = True
-        if self.speedx >= 0:
-            self.facing = "right"
-        else:
-            self.facing = "left"
+            if self.speedx >= 0:
+                self.facing = "right"
+            else:
+                self.facing = "left"
         Creature.update(self, width, height)
         self.animate()
         self.changed = False
@@ -49,22 +49,22 @@ class Leviathan(Demon):
         self.changed = True
         self.shooting = True
                             
-    def detectPlayer(self, player):
-        if self.seen == True:
-            if xdiff > 0: #to the right of the player
-                self.speed = 0
-                self.facing = "right"
-            elif xdiff < 0: #to the left
-                self.speed = 0
-                self.facing = "left"
+    #def detectPlayer(self, player):
+        #if self.seen == True:
+            #if xdiff > 0: #to the right of the player
+                #self.speed = 0
+                #self.facing = "right"
+            #elif xdiff < 0: #to the left
+                #self.speed = 0
+                #self.facing = "left"
                 
-            if ydiff > 0: #below
-                self.speed = 0
-                self.facing = "down"
-            elif ydiff < 0: #above
-                self.speed = 0
-                self.facing = "up"
+            #if ydiff > 0: #below
+                #self.speed = 0
+                #self.facing = "down"
+            #elif ydiff < 0: #above
+                #self.speed = 0
+                #self.facing = "up"
             
-                shoot()
+                #shoot()
             
             

@@ -53,7 +53,6 @@ class Creature():
                 self.speedy = -self.speedy
                 self.didBounceY = True
         
-
     def animate(self):
         if self.waitCount < self.maxWait:
             self.waitCount += 1

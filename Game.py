@@ -113,7 +113,7 @@ while True:
             leviathan.update(players, screenWidth, screenHeight)
         
         for demon in demons:
-            demon.update(players, screenWidth, screenHeight)
+            demon.update(screenWidth, screenHeight, players)
         
         for hud in HUDs:
             hud.update()    
