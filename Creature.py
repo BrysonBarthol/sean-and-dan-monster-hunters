@@ -39,16 +39,6 @@ class Creature():
             if self.rect.top < 0 or self.rect.bottom > height:
                 self.speedy = -self.speedy
                 self.didBounceY = True
-                
-    def collideBlock(self, width, height):
-        if not self.didBounceX:
-            if self.rect.left < 0 or self.rect.right > width:
-                self.speedx = -self.speedx
-                self.didBounceX = True
-        if not self.didBounceY:
-            if self.rect.top < 0 or self.rect.bottom > height:
-                self.speedy = -self.speedy
-                self.didBounceY = True
         
     def animate(self):
         if self.waitCount < self.maxWait:
