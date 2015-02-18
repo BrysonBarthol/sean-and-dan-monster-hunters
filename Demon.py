@@ -27,7 +27,7 @@ class Demon(Creature):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 96 #Play with this number
+        self.detectionRadius = 96
         self.shooting = False
             
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
@@ -97,11 +97,6 @@ class Demon(Creature):
     
     #The following code was written by Dominic Flanders
     
-    #def move(self, player):
-        #if player != None:
-            #self.detect(player)
-        #self.rect = self.rect.move(self.speed)
-    
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
         x2 = pt[0]
@@ -129,46 +124,6 @@ class Demon(Creature):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
-    
-    #def detectPlayer(self, player):
-        #if self.direction == "up":
-            #if self.rect.right+self.detectRadius > player.rect.left:
-                #if self.rect.left-self.detectRadius < player.rect.right:
-                    #if self.rect.bottom > player.rect.top:
-                        #if self.rect.top+self.detectRadius*2 < player.rect.bottom:
-                            #seen = True
-        #if self.direction == "down":
-            #if self.rect.right+self.detectRadius > player.rect.left:
-                #if self.rect.left-self.detectRadius < player.rect.right:
-                    #if self.rect.bottom+self.detectRadius*2 < player.rect.top:
-                        #if self.rect.top > player.rect.bottom:
-                            #seen = True
-        #if self.direction == "right":
-            #if self.rect.right+self.detectRadius*2 > player.rect.left:
-                #if self.rect.left < player.rect.right:
-                    #if self.rect.bottom+self.detectRadius < player.rect.top:
-                        #if self.rect.top+self.detectRadius > player.rect.bottom:
-                            #seen = True
-        #if self.direction == "left":
-            #if self.rect.right > player.rect.left:
-                #if self.rect.left-self.detectRadius*2 < player.rect.right:
-                    #if self.rect.bottom+self.detectRadius < player.rect.top:
-                        #if self.rect.top+self.detectRadius > player.rect.bottom:
-                            #seen = True
-                            
-        #if self.seen == True:
-            #xdiff = player.rect.center[0]-self.rect.center[0]
-            #ydiff = player.rect.center[1]-self.rect.center[1]
-            
-            #if xdiff > 0: #to the right of the player
-                #self.speedx = self.maxSpeed
-            #elif xdiff < 0: #to the left
-                #self.speedx =-self.maxSpeed
-                
-            #if ydiff > 0: #below
-                #self.speedy = self.maxSpeed
-            #elif ydiff < 0: #above
-                #self.speedy =-self.maxSpeed
                 
         
         
