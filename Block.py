@@ -33,16 +33,21 @@ class Block():
 
     def demonCollide(self, other):
         if (self.rect.right > other.rect.left
-            or self.rect.left < other.rect.right):
-                other.speedx = -other.speedx
-                other.didBouncex = True
-        if (self.rect.bottom > other.rect.top 
-            or self.rect.top < other.rect.bottom):
-                other.speedy = -other.speedy
-                other.didBouncey = True
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False
                
-    #def leviathanCollide(self, other):
-        
+    def leviathanCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False
 
     def update(self):
         pass

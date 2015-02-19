@@ -140,14 +140,28 @@ while True:
             for player in players:
                 if block.playerCollide(player):
                     player.go("stop")
-        
+            for demon in demons:
+                if block.demonCollide(demon):
+                    demon.speedx = -demon.speedx
+                    demon.speedy = -demon.speedy
+            for leviathan in leviathans:
+                if block.leviathanCollide(leviathan):
+                    leviathan.speedx = -leviathan.speedx
+                    leviathan.speedy = -leviathan.speedy
         for levelChangeBlock in level.levelChangeBlocks:
             #print levelChangeBlock.newlev
             for player in players:
                 if levelChangeBlock.playerCollide(player):
                     print "new level"
                     level.load(levelChangeBlock.newlev, levelChangeBlock.kind)
-        
+            for demon in demons:
+                if levelChangeBlock.demonCollide(demon):
+                    demon.speedx = -demon.speedx
+                    demon.speedy = -demon.speedy
+            for leviathan in leviathans:
+                if levelChangeBlock.leviathanCollide(leviathan):
+                    leviathan.speedx = -leviathan.speedx
+                    leviathan.speedy = -leviathan.speedy
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
