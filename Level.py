@@ -5,6 +5,7 @@ from Player import Player
 from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
+from Pestilence import Pestilence
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -19,6 +20,7 @@ class Level():
         self.ghosts = []
         self.leviathans = []
         self.demons = []
+        self.pestilences = []
         
         self.players = []
         
@@ -52,6 +54,8 @@ class Level():
             things[leviathan.rect.center[1]/50][leviathan.rect.center[0]/50] = "L"
         for demon in self.demons:
             things[demon.rect.center[1]/50][demon.rect.center[0]/50] = "D"
+        for pestilence in self.pestilences:
+            things[pestilence.rect.center[1]/50][lc.rect.center[0]/50] = "!"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         
@@ -79,7 +83,8 @@ class Level():
             self.demons.remove(self.demons[0])
         while len(self.leviathans) > 0:
             self.leviathans.remove(self.leviathans[0])
-
+        while len(self.pestilences) > 0:
+            self.pestilences.remove(self.pestilences[0])
     def load(self, level, source=None):  
         if source != None:
             self.unload()    
@@ -221,7 +226,9 @@ class Level():
                 if c == "D":
                     self.demons += [Demon(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
-                
                 if c == "L":
                     self.leviathans += [Leviathan(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                if c == "!":
+                    self.pestilences += [Pestilence(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]

@@ -74,6 +74,8 @@ class Player(Creature):
         self.hurtDelay = 0
         self.invincible = False
         self.living = True
+        self.maxAmmo =32
+        
         
 
         
@@ -156,6 +158,9 @@ class Player(Creature):
                 if (self.radius + other.radius) > self.distance(other.rect.center):
                     self.hurt()
     
+    #def shot(self, amount=1):
+        #self.ammo -= amount
+        
     def hurt(self, amount=1):
         if not self.invincible:
             self.health -= amount
