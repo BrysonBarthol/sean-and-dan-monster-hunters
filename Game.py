@@ -8,6 +8,7 @@ from LevelChangeBlock import LevelChangeBlock
 from Bullet import Bullet
 from MainMenu import Button
 from HUDHeart import HUDHearts
+from Boss import Boss
 pygame.init()
 win = False
 
@@ -30,6 +31,7 @@ players = level.players
 ghosts = level.ghosts
 leviathans = level.leviathans
 demons = level.demons
+#boss = level.boss
 
 playButton = Button([screenWidth/2, screenHeight-300], 
                                      "RSC/MainMenu/playbutton.png", 
@@ -129,6 +131,10 @@ while True:
         for demon in demons:
             for player in players:
                 player.collideMonster(demon)
+                
+        #for boss in boss:
+          #  for player in players:
+           #     player.collideMonster(boss)
             
         for block in level.hardBlocks:
             for player in players:
@@ -186,6 +192,10 @@ while True:
         for enemy in level.demons:
             if not enemy.living:
                 level.demons.remove(enemy)
+                
+       # for enemy in level.boss:
+        #    if not enemy.living:
+         #       level.boss.remove(enemy)
 
                 
         red = 0
@@ -209,6 +219,8 @@ while True:
             screen.blit(leviathan.image, leviathan.rect)
         for hud in HUDs:
             screen.blit(hud.image, hud.rect)
+        #for boss in boss:
+         #   screen.blit(boss.image, boss.rect)
         pygame.display.flip()
         
     bgImage = pygame.image.load("RSC/MainMenu/gameover.png").convert()
@@ -228,6 +240,7 @@ while True:
                     ghosts = level.ghosts
                     leviathans = level.leviathans
                     demons = level.demons
+                    boss = level.boss
                     
         bgColor = r,g,b
         screen.fill(bgColor)

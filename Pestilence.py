@@ -2,19 +2,17 @@ import pygame, math
 from Leviathan import Leviathan
 from Ghost import Ghost
 
-class Boss(Leviathan, Ghost):
+class Pestilence(Demon):
     def __init__(self, pos):
-        Leviathin.__init__(self, pos)
-        Ghost.__init__(self, pos)
-        self.upImages = [pygame.image.load("RSC/Boss/BossUp2.png"),
-                         pygame.image.load("RSC/Boss/BossUp2.png")]
-        self.downImages = [pygame.image.load("RSC/Boss/BossDown1.png"),
-                            pygame.image.load("RSC/Boss/BossDown2.png")]
-        self.leftImages = [pygame.image.load("RSC/Boss/BossLeft1.png"),
-                            pygame.image.load("RSC/Boss/BossLeft2.png")]
-        self.rightImages = [pygame.image.load("RSC/Boss/BossRight1.png"),
-                            pygame.image.load("RSC/Boss/BossRight2.png")]
-        
+        Demon.__init__(self, pos)
+        self.upImages = [pygame.image.load("RSC/Boss/PestilenceUp1.png"),
+                         pygame.image.load("RSC/Boss/PestilenceUp2.png")]
+        self.downImages = [pygame.image.load("RSC/Boss/PestilenceDown1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceDown2.png")]
+        self.leftImages = [pygame.image.load("RSC/Boss/PestilenceLeft1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceLeft2.png")]
+        self.rightImages = [pygame.image.load("RSC/Boss/PestilenceRight1.png"),
+                            pygame.image.load("RSC/Boss/PestilenceRight2.png")]
         
         self.detectionRadius = 150
         
