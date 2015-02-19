@@ -23,19 +23,39 @@ class Leviathan(Demon):
         self.images = self.downImages
         self.image = self.images[self.frame]
         
-        if self.speedx >= 0:
-            self.facing = "right"
+        if math.fabs(self.speedx) >= math.fabs(self.speedy):
+            if self.speedx >= 0:
+                self.facing = "right"
+            else:
+                self.facing = "left"
         else:
-            self.facing = "left"
+            if self.speedy >= 0:
+                self.facing = "down"
+            else:
+                self.facing = "up"
+        #if self.speedx >= 0:
+            #self.facing = "right"
+        #else:
+            #self.facing = "left"
     
     def update(self, player, width, height):
         self.speed = [self.speedx, self.speedy]
         if self.didBounceX or self.didBounceY:
             self.changed = True
+        if math.fabs(self.speedx) >= math.fabs(self.speedy):
             if self.speedx >= 0:
                 self.facing = "right"
             else:
                 self.facing = "left"
+        else:
+            if self.speedy >= 0:
+                self.facing = "down"
+            else:
+                self.facing = "up"    
+            #if self.speedx >= 0:
+                #self.facing = "right"
+            #else:
+                #self.facing = "left"
         Creature.update(self, width, height)
         self.animate()
         self.changed = False
