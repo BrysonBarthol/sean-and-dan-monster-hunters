@@ -41,7 +41,7 @@ class Block():
                 other.speedy = -other.speedy
                 other.didBouncey = True
                
-    def leviathanCollide(self, other):
+    #def leviathanCollide(self, other):
         
 
     def update(self):
