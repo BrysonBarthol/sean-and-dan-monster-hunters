@@ -1,18 +1,17 @@
 import pygame, math
 from Demon import Demon
 
-
-class Pestilence(Demon):
+class God(Demon):
     def __init__(self, pos):
         Demon.__init__(self, pos)
-        self.upImages = [pygame.image.load("RSC/Boss/PestilenceUp1.png"),
-                         pygame.image.load("RSC/Boss/PestilenceUp2.png")]
-        self.downImages = [pygame.image.load("RSC/Boss/PestilenceDown1.png"),
-                           pygame.image.load("RSC/Boss/PestilenceDown2.png")]
-        self.leftImages = [pygame.image.load("RSC/Boss/PestilenceLeft1.png"),
-                           pygame.image.load("RSC/Boss/PestilenceLeft2.png")]
-        self.rightImages = [pygame.image.load("RSC/Boss/PestilenceRight1.png"),
-                            pygame.image.load("RSC/Boss/PestilenceRight2.png")]
+        self.upImages = [pygame.image.load("RSC/Boss/GodUp1.png"),
+                         pygame.image.load("RSC/Boss/GodUp2.png")]
+        self.downImages = [pygame.image.load("RSC/Boss/GodDown1.png"),
+                           pygame.image.load("RSC/Boss/GodDown2.png")]
+        self.leftImages = [pygame.image.load("RSC/Boss/GodLeft1.png"),
+                           pygame.image.load("RSC/Boss/GodLeft2.png")]
+        self.rightImages = [pygame.image.load("RSC/Boss/GodRight1.png"),
+                            pygame.image.load("RSC/Boss/GodRight2.png")]
         
         self.detectionRadius = 150
         
@@ -85,8 +84,3 @@ class Pestilence(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
-    
-
-        
-
-
