@@ -117,6 +117,9 @@ while True:
         for demon in demons:
             demon.update(screenWidth, screenHeight, players)
         
+        for pestilence in pestilences:
+            pestilence.update(screenWidth, screenHeight, players)
+        
         for hud in HUDs:
             hud.update()    
             
@@ -148,6 +151,10 @@ while True:
                 if block.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if block.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for levelChangeBlock in level.levelChangeBlocks:
             #print levelChangeBlock.newlev
             for player in players:
@@ -162,6 +169,10 @@ while True:
                 if levelChangeBlock.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if levelChangeBlock.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
@@ -173,6 +184,9 @@ while True:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
             for enemy in level.leviathans:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
+            for enemy in level.pestilences:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
                 
