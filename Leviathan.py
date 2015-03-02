@@ -35,36 +35,40 @@ class Leviathan(Demon):
             else:
                 self.facing = "up"
     
-    def update(self, player, width, height):
-        self.speed = [self.speedx, self.speedy]
-        if self.didBounceX or self.didBounceY:
-            self.changed = True
-        if math.fabs(self.speedx) >= math.fabs(self.speedy):
-            if self.speedx >= 0:
-                self.facing = "right"
-            else:
-                self.facing = "left"
-        else:
-            if self.speedy >= 0:
-                self.facing = "down"
-            else:
-                self.facing = "up"    
-        Creature.update(self, width, height)
-        self.animate()
-        self.changed = False
-    
-    def move(self):
-        self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(self.speed)
+   # def update(self, players, width, height):
+      #  self.speed = [self.speedx, self.speedy]
+      #  if self.didBounceX or self.didBounceY:
+         #   self.changed = True
+      #  if math.fabs(self.speedx) >= math.fabs(self.speedy):
+        #    if self.speedx >= 0:
+         #       self.facing = "right"
+        #    else:
+          #      self.facing = "left"
+       # else:
+        #    if self.speedy >= 0:
+        #        self.facing = "down"
+        #    else:
+         #       self.facing = "up"    
+        #Creature.update(self, width, height)
+        #self.move(players)
+        #self.collideWall(width, height)
+       # self.animate()
+        #self.changed = False
+       
+    def update(self, width, height, players):
+        Demon.update(self, width, height, players)
+        
+    def move(self, players):
+        Demon.move(self, players)
         
     #The following code was written by Dominic Flanders
     
-    def distToPoint(self, pt):
-        x1 = self.rect.center[0]
-        x2 = pt[0]
-        y1 = self.rect.center[1]
-        y2 = pt[1]
-        return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
+	def distToPoint(self, pt):
+		x1 = self.rect.center[0]
+		x2 = pt[0]
+		y1 = self.rect.center[1]
+		y2 = pt[1]
+		return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
                 
     def detect(self, player):
         if self.distToPoint(player.rect.center) < self.detectionRadius:
@@ -77,15 +81,15 @@ class Leviathan(Demon):
                 self.speedx = 0
             elif pX < zX:
                 self.speedx = 0
-            #else:
-                #self.speedx = 0
+            else:
+                self.speedx = 0
        
             if pY > zY:
                 self.speedy = 0
             elif pY < zY:
                 self.speedy = 0
-            #else:
-                #self.speedy = 0
+            else:
+                self.speedy = 0
           
           
           

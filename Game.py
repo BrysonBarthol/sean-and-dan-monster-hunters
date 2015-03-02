@@ -112,7 +112,7 @@ while True:
             ghost.update(screenWidth, screenHeight)
         
         for leviathan in leviathans:
-            leviathan.update(players, screenWidth, screenHeight)
+            leviathan.update(screenWidth, screenHeight, players)
         
         for demon in demons:
             demon.update(screenWidth, screenHeight, players)
