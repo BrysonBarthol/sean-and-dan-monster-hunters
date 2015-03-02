@@ -14,6 +14,18 @@ class War(Demon):
         self.rightImages = [pygame.image.load("RSC/Boss/WarRight1.png"),
                             pygame.image.load("RSC/Boss/WarRight2.png")]
         
+        self.seen = False
+        self.direction = "down"
+        self.changed = False
+        self.images = self.downImages
+        self.frame = 0
+        self.maxFrame = len(self.images) - 1
+        self.waitCount = 0
+        self.maxWait = 60*.25
+        self.image = self.images[self.frame]
+        self.rect = self.image.get_rect(center = self.rect.center)
+        self.maxSpeed = 2
+        self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.detectionRadius = 150
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):

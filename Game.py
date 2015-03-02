@@ -31,7 +31,7 @@ players = level.players
 ghosts = level.ghosts
 leviathans = level.leviathans
 demons = level.demons
-#pestilence = level.pestilence
+pestilences = level.pestilences
 
 playButton = Button([screenWidth/2, screenHeight-300], 
                                      "RSC/MainMenu/playbutton.png", 
@@ -117,6 +117,9 @@ while True:
         for demon in demons:
             demon.update(screenWidth, screenHeight, players)
         
+        for pestilence in pestilences:
+            pestilence.update(screenWidth, screenHeight, players)
+        
         for hud in HUDs:
             hud.update()    
             
@@ -132,9 +135,9 @@ while True:
             for player in players:
                 player.collideMonster(demon)
                 
-        #for pestilence in pestilence:
-          #  for player in players:
-           #     player.collideMonster(pestilence)
+        for pestilence in pestilences:
+            for player in players:
+                player.collideMonster(pestilence)
             
         for block in level.hardBlocks:
             for player in players:
@@ -148,6 +151,10 @@ while True:
                 if block.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if block.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for levelChangeBlock in level.levelChangeBlocks:
             #print levelChangeBlock.newlev
             for player in players:
@@ -162,6 +169,10 @@ while True:
                 if levelChangeBlock.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if levelChangeBlock.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
@@ -173,6 +184,9 @@ while True:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
             for enemy in level.leviathans:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
+            for enemy in level.pestilences:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
                 
@@ -193,9 +207,9 @@ while True:
             if not enemy.living:
                 level.demons.remove(enemy)
                 
-       # for enemy in level.pestilence:
-        #    if not enemy.living:
-         #       level.pestilence.remove(enemy)
+        for enemy in level.pestilences:
+            if not enemy.living:
+                level.pestilences.remove(enemy)
 
                 
         red = 0
@@ -219,8 +233,8 @@ while True:
             screen.blit(leviathan.image, leviathan.rect)
         for hud in HUDs:
             screen.blit(hud.image, hud.rect)
-        #for pestilence in pestilence:
-         #   screen.blit(pestilence.image, boss.rect)
+        for pestilence in pestilences:
+            screen.blit(pestilence.image, pestilence.rect)
         pygame.display.flip()
         
     bgImage = pygame.image.load("RSC/MainMenu/gameover.png").convert()
