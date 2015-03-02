@@ -62,6 +62,29 @@ class Creature():
                 self.images = self.leftImages
             
             self.image = self.images[self.frame]
+    
+    #def HurtAnimate(self):
+        #if self.waitCount < self.maxWait:
+            #self.waitCount += 1
+        #else:
+            #self.waitCount = 0
+            #self.changed = True
+            #if self.frame < self.maxFrame:
+                #self.frame += 1
+            #else:
+                #self.frame = 0
+        
+        #if self.changed:    
+            #if self.facing == "up":
+                #self.images = self.upHurtImages
+            #elif self.facing == "down":
+                #self.images = self.downHurtImages
+            #elif self.facing == "right":
+                #self.images = self.rightHurtImages
+            #elif self.facing == "left":
+                #self.images = self.leftHurtImages
+            
+            #self.image = self.Hurtimages[self.frame]
             
     def hurt(self, amount=1):
         self.health -= amount
