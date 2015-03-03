@@ -78,18 +78,29 @@ class Leviathan(Demon):
             zY = self.rect.center[1]
            
             if pX > zX:
+                self.facing = "right"
                 self.speedx = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
+                
             elif pX < zX:
+                self.facing = "left"
                 self.speedx = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
             else:
                 self.speedx = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
        
             if pY > zY:
+                self.facing = "down"
                 self.speedy = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
             elif pY < zY:
+                self.facing = "up"
                 self.speedy = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
             else:
                 self.speedy = 0
+                return [Bullet(self.rect.center, self.facing, 10)]
           
           
           
