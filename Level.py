@@ -55,7 +55,7 @@ class Level():
         for demon in self.demons:
             things[demon.rect.center[1]/50][demon.rect.center[0]/50] = "D"
         for pestilence in self.pestilences:
-            things[pestilence.rect.center[1]/50][lc.rect.center[0]/50] = "!"
+            things[pestilence.rect.center[1]/50][pestilence.rect.center[0]/50] = "!"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         

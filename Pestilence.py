@@ -27,6 +27,7 @@ class Pestilence(Demon):
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.detectionRadius = 150
+        self.health = 3
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:
@@ -97,7 +98,13 @@ class Pestilence(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
-    
+                
+    def hurt(self, amount=1):
+        self.health -= amount
+       # if self.hurt == true:
+        #    pass
+        if self.health <=0:
+            self.living = False
 
         
 
