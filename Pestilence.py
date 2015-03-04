@@ -13,6 +13,14 @@ class Pestilence(Demon):
                            pygame.image.load("RSC/Boss/PestilenceLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Boss/PestilenceRight1.png"),
                             pygame.image.load("RSC/Boss/PestilenceRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Boss/PestilenceUpHit1.png"),
+                         pygame.image.load("RSC/Boss/PestilenceUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Boss/PestilenceDownHit1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Boss/PestilenceLeftHit1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Boss/PestilenceRightHit1.png"),
+                            pygame.image.load("RSC/Boss/PestilenceRightHit2.png")]
         
         self.seen = False
         self.direction = "down"
@@ -65,6 +73,7 @@ class Pestilence(Demon):
         self.changed = False
         self.didBounceX = False
         self.didBounceY = False
+        
     
     def collidePlayer(self, other):
         hurt(player)
@@ -98,14 +107,6 @@ class Pestilence(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
-                
-    def hurt(self, amount=1):
-        self.health -= amount
-       # if self.hurt == true:
-        #    pass
-        if self.health <=0:
-            self.living = False
-
         
 
 
