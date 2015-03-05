@@ -91,6 +91,14 @@ while True:
                                 players[0].go("left")
                         if event.key == pygame.K_SPACE:
                                 bullets += player.shoot()
+                        if event.key == pygame.K_BACKQUOTE :
+                            print event.mod, pygame.KMOD_LALT
+                            if event.mod & pygame.KMOD_LALT:
+                                print "new level"
+                                level.killOldLevels(0)
+                                newlev = raw_input("Screen Number: ")
+                                direction = raw_input("Entering From: ")
+                                level.load("screen"+newlev, direction)
                 if event.type == pygame.KEYUP:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
                                 players[0].go("stop up")

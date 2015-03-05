@@ -118,6 +118,7 @@ class Pestilence(Demon):
         if self.health <=0:
             self.living = False
         if self.hurt:
-            self.detect(players)
+            self.detectionRadius = 9001
+            
 
 
