@@ -1,7 +1,6 @@
 import pygame, math
 from Demon import Demon
 
-players = level.players
 
 class Pestilence(Demon):
     def __init__(self, pos):
