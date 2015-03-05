@@ -135,23 +135,26 @@ class Player(Creature):
                 #print "hit xWall"
     
     def animate(self):
-        if self.waitCount < self.maxWait:
-            self.waitCount += 1
-        else:
-            self.waitCount = 0
-            self.changed = True
-            if self.frame < self.maxFrame:
-                self.frame += 1
+        if self.moving or self.hurting:
+            if self.waitCount < self.maxWait:
+                self.waitCount += 1
             else:
-                self.frame = 0
-            if self.hurting:
+                self.waitCount = 0
+                self.changed = True
+                if self.frame < self.maxFrame:
+                    self.frame += 1
+                else:
+                    self.frame = 0
                 if self.hurting:
-                    if self.hurtingFrame < self.hurtingFrameMax:
-                        self.hurtingFrame += 1
-                    else:
-                        self.hurtingFrame = 0
-                        self.hurting = False
-        
+                    if self.hurting:
+                        if self.hurtingFrame < self.hurtingFrameMax:
+                            self.hurtingFrame += 1
+                        else:
+                            self.hurtingFrame = 0
+                            self.hurting = False
+        else:
+            self.waitCount = self.maxWait
+            
         if self.changed:    
             if self.facing == "up":
                 if self.hurting:
