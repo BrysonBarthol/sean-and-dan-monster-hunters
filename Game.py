@@ -15,6 +15,7 @@ win = False
 clock = pygame.time.Clock()
 
 bullets = []
+enemyBullets = []
 
 screenWidth = 1000 
 screenHeight = 700
@@ -112,7 +113,7 @@ while True:
             ghost.update(screenWidth, screenHeight)
         
         for leviathan in leviathans:
-            leviathan.update(screenWidth, screenHeight, players)
+            enemyBullets += leviathan.update(screenWidth, screenHeight, players)
         
         for demon in demons:
             demon.update(screenWidth, screenHeight, players)
@@ -190,7 +191,10 @@ while True:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
                 
-        
+        for bullet in enemyBullets:
+            bullet.update(screenWidth, screenHeight)
+            
+				
         #print len(bullets)        
         for bullet in bullets:
             if not bullet.living:
@@ -224,6 +228,8 @@ while True:
         for player in players:
             screen.blit(player.image, player.rect)
         for bullet in bullets:
+            screen.blit(bullet.image, bullet.rect)
+        for bullet in enemyBullets:
             screen.blit(bullet.image, bullet.rect)
         for ghost in ghosts:
             screen.blit(ghost.image, ghost.rect)

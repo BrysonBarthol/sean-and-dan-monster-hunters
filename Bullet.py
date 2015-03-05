@@ -8,7 +8,7 @@ class Bullet():
         speed = 10
         self.speedx = 0
         self.speedy = 0
-        #print facing
+        print facing
         if facing == "up":
             self.speedx = 0
             self.speedy = -speed
