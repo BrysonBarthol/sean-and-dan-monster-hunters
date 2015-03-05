@@ -1,6 +1,7 @@
 import pygame, math
 from Demon import Demon
 
+players = level.players
 
 class Pestilence(Demon):
     def __init__(self, pos):
@@ -34,7 +35,7 @@ class Pestilence(Demon):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 150
+        self.detectionRadius = 350
         self.health = 3
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
@@ -77,6 +78,7 @@ class Pestilence(Demon):
     
     def collidePlayer(self, other):
         hurt(player)
+    
         
     #The following code was written by Dominic Flanders
     
@@ -108,5 +110,15 @@ class Pestilence(Demon):
             else:
                 self.speedy = 0
         
+    #my code
+    
+    def hurt(self, amount=1):
+        self.health -= amount
+        self.changed = True
+        self.hurting = True
+        if self.health <=0:
+            self.living = False
+        if self.hurt:
+            self.detect(players)
 
 

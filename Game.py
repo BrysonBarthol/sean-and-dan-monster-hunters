@@ -254,7 +254,7 @@ while True:
                     ghosts = level.ghosts
                     leviathans = level.leviathans
                     demons = level.demons
-                    boss = level.boss
+                    pestilences = level.pestilences
                     
         bgColor = r,g,b
         screen.fill(bgColor)
