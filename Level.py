@@ -6,6 +6,7 @@ from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
+from Portal import Portal
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -231,4 +232,7 @@ class Level():
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "!":
                     self.pestilences += [Pestilence(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                if c == "O":
+                    self.portal += [Portal(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
