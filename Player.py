@@ -16,6 +16,14 @@ class Player(Creature):
                                pygame.image.load("RSC/Player/DeanLeft2.png")]
             self.rightImages = [pygame.image.load("RSC/Player/DeanRight1.png"),
                                 pygame.image.load("RSC/Player/DeanRight2.png")]
+            self.upHurtImages = [pygame.image.load("RSC/Player/DeanUpHurt1.png"),
+                             pygame.image.load("RSC/Player/DeanUpHurt2.png")]
+            self.downHurtImages = [pygame.image.load("RSC/Player/DeanDownHurt1.png"),
+                               pygame.image.load("RSC/Player/DeanDownHurt2.png")]
+            self.leftHurtImages = [pygame.image.load("RSC/Player/DeanLeftHurt1.png"),
+                               pygame.image.load("RSC/Player/DeanLeftHurt2.png")]
+            self.rightHurtImages = [pygame.image.load("RSC/Player/DeanRightHurt1.png"),
+                                pygame.image.load("RSC/Player/DeanRightHurt2.png")]
             self.upKnifeImages = [pygame.image.load("RSC/Player/DeanUpKnife1.png"),
                              pygame.image.load("RSC/Player/DeanUpKnife2.png")]
             self.downKnifeImages = [pygame.image.load("RSC/Player/DeanDownKinfe1.png"),
@@ -41,6 +49,14 @@ class Player(Creature):
                                pygame.image.load("RSC/Player/SamLeft2.png")]
             self.rightImages = [pygame.image.load("RSC/Player/SamRight1.png"),
                                 pygame.image.load("RSC/Player/SamRight2.png")]
+            self.upHurtImages = [pygame.image.load("RSC/Player/SamUpHurt1.png"),
+                             pygame.image.load("RSC/Player/SamUpHurt2.png")]
+            self.downHurtImages = [pygame.image.load("RSC/Player/SamDownHurt1.png"),
+                               pygame.image.load("RSC/Player/SamDownHurt2.png")]
+            self.leftHurtImages = [pygame.image.load("RSC/Player/SamLeftHurt1.png"),
+                               pygame.image.load("RSC/Player/SamLeftHurt2.png")]
+            self.rightHurtImages = [pygame.image.load("RSC/Player/SamRightHurt1.png"),
+                                pygame.image.load("RSC/Player/SamRightHurt2.png")]
             self.upKnifeImages = [pygame.image.load("RSC/Player/SamUpKnife1.png"),
                              pygame.image.load("RSC/Player/SamUpKnife2.png")]
             self.downKnifeImages = [pygame.image.load("RSC/Player/SamDownKnife1.png"),
@@ -75,6 +91,9 @@ class Player(Creature):
         self.invincible = False
         self.living = True
         self.maxAmmo =32
+        self.hurting = False
+        self.hurtingFrame = 0
+        self.hurtingFrameMax = 1
         
         
 
@@ -116,7 +135,7 @@ class Player(Creature):
                 #print "hit xWall"
     
     def animate(self):
-        if self.moving:
+        if self.moving or self.hurting:
             if self.waitCount < self.maxWait:
                 self.waitCount += 1
             else:
@@ -126,31 +145,43 @@ class Player(Creature):
                     self.frame += 1
                 else:
                     self.frame = 0
-                    if self.shooting:
-                        self.shooting = False
-                        self.images = self.upImages
-                    if self.stabbing:
-                        self.stabbing = False
-                        self.images = self.upImages
+                if self.hurting:
+                    if self.hurting:
+                        if self.hurtingFrame < self.hurtingFrameMax:
+                            self.hurtingFrame += 1
+                        else:
+                            self.hurtingFrame = 0
+                            self.hurting = False
         else:
             self.waitCount = self.maxWait
-        
+            
         if self.changed:    
             if self.facing == "up":
-                if self.shooting:
-                    self.images = self.upRangedImages
-                elif self.stabbing:
-                    self.images = self.upKnifeImages
+                if self.hurting:
+                    self.images = self.upHurtImages
                 else:
                     self.images = self.upImages
             elif self.facing == "down":
-                self.images = self.downImages
+                if self.hurting:
+                    self.images = self.downHurtImages
+                else:
+                    self.images = self.downImages
+                
             elif self.facing == "right":
-                self.images = self.rightImages
+                if self.hurting:
+                    self.images = self.rightHurtImages
+                else:
+                    self.images = self.rightImages
             elif self.facing == "left":
-                self.images = self.leftImages
+                if self.hurting:
+                    self.images = self.leftHurtImages
+                else:
+                    self.images = self.leftImages
             
-            self.image = self.images[self.frame]
+            if self.hurting:
+                self.image = self.images[self.hurtingFrame]
+            else:
+                self.image = self.images[self.frame]
     
     def collideMonster(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -162,6 +193,8 @@ class Player(Creature):
         #self.ammo -= amount
         
     def hurt(self, amount=1):
+        self.changed = True
+        self.hurting = True
         if not self.invincible:
             self.health -= amount
             self.invincible = True

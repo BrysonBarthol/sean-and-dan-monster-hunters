@@ -15,6 +15,7 @@ win = False
 clock = pygame.time.Clock()
 
 bullets = []
+enemyBullets = []
 
 screenWidth = 1000 
 screenHeight = 700
@@ -26,7 +27,8 @@ bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
 bgRect = bgImage.get_rect()
 
 bgColor = r,g,b = 0, 0, 0
-level = Level("screen24", ["Dan", "Sean"], screenSize)
+level = Level("screen124", ["Dan", "Sean"], screenSize)
+level.killOldLevels(0)
 players = level.players
 ghosts = level.ghosts
 leviathans = level.leviathans
@@ -72,6 +74,7 @@ while True:
             
     pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
     pygame.mixer.music.play(-1, 0.0) 
+    print "number of players:",len(players)
     HUDs += [HUDHearts([screenWidth-60, 10],players[0])]  
             
     while run and players[0].living:
@@ -90,6 +93,14 @@ while True:
                                 players[0].go("left")
                         if event.key == pygame.K_SPACE:
                                 bullets += player.shoot()
+                        if event.key == pygame.K_BACKQUOTE :
+                            print event.mod, pygame.KMOD_LALT
+                            if event.mod & pygame.KMOD_LALT:
+                                print "new level"
+                                level.killOldLevels(0)
+                                newlev = raw_input("Screen Number: ")
+                                direction = raw_input("Entering From: ")
+                                level.load("screen"+newlev, direction)
                 if event.type == pygame.KEYUP:
                         if event.key == pygame.K_w or event.key == pygame.K_UP:
                                 players[0].go("stop up")
@@ -112,10 +123,13 @@ while True:
             ghost.update(screenWidth, screenHeight)
         
         for leviathan in leviathans:
-            leviathan.update(players, screenWidth, screenHeight)
+            enemyBullets += leviathan.update(screenWidth, screenHeight, players)
         
         for demon in demons:
             demon.update(screenWidth, screenHeight, players)
+        
+        for pestilence in pestilences:
+            pestilence.update(screenWidth, screenHeight, players)
         
         for hud in HUDs:
             hud.update()    
@@ -148,6 +162,10 @@ while True:
                 if block.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if block.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for levelChangeBlock in level.levelChangeBlocks:
             #print levelChangeBlock.newlev
             for player in players:
@@ -162,6 +180,10 @@ while True:
                 if levelChangeBlock.leviathanCollide(leviathan):
                     leviathan.speedx = -leviathan.speedx
                     leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if levelChangeBlock.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
@@ -175,8 +197,14 @@ while True:
             for enemy in level.leviathans:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+            for enemy in level.pestilences:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
                 
-        
+        for bullet in enemyBullets:
+            bullet.update(screenWidth, screenHeight)
+            
+				
         #print len(bullets)        
         for bullet in bullets:
             if not bullet.living:
@@ -211,6 +239,8 @@ while True:
             screen.blit(player.image, player.rect)
         for bullet in bullets:
             screen.blit(bullet.image, bullet.rect)
+        for bullet in enemyBullets:
+            screen.blit(bullet.image, bullet.rect)
         for ghost in ghosts:
             screen.blit(ghost.image, ghost.rect)
         for demon in demons:
@@ -235,12 +265,13 @@ while True:
                 if playButton.release(event.pos):
                     run = True
                     level.killOldLevels(0)
-                    level = Level("screen24", ["Dan", "Sean"], screenSize)
+                    level = Level("screen124", ["Dan", "Sean"], screenSize)
+                    print "h",level.players
                     players = level.players
                     ghosts = level.ghosts
                     leviathans = level.leviathans
                     demons = level.demons
-                    boss = level.boss
+                    pestilences = level.pestilences
                     
         bgColor = r,g,b
         screen.fill(bgColor)

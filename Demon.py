@@ -114,7 +114,7 @@ class Demon(Creature):
             if pX > zX:
                 self.speedx = self.maxSpeed
             elif pX < zX:
-                self.speedx = -self.maxSpeed
+                self.speedx = -self.maxSpeed		
             else:
                 self.speedx = 0
        

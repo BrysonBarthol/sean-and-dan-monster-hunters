@@ -1,6 +1,7 @@
 import pygame, math
 from Bullet import Bullet
 
+
 class Creature():
     def __init__(self, image, speed = [0,0], pos = [0,0], health = 1, maxHealth = 1):
         self.image = pygame.image.load(image)
@@ -16,6 +17,9 @@ class Creature():
         self.health = health
         self.maxHealth = maxHealth
         self.place(pos)
+        self.hurting = False
+        self.hurtingFrame = 0
+        self.hurtingFrameMax = 1
         
     def place(self, pos):
         self.rect.center = pos
@@ -50,21 +54,46 @@ class Creature():
                 self.frame += 1
             else:
                 self.frame = 0
-        
+            if self.hurting:
+                if self.hurting:
+                    if self.hurtingFrame < self.hurtingFrameMax:
+                        self.hurtingFrame += 1
+                    else:
+                        self.hurtingFrame = 0
+                        self.hurting = False
+                                
         if self.changed:    
             if self.facing == "up":
-                self.images = self.upImages
+                if self.hurting:
+                    self.images = self.upHurtImages
+                else:
+                    self.images = self.upImages
             elif self.facing == "down":
-                self.images = self.downImages
+                if self.hurting:
+                    self.images = self.downHurtImages
+                else:
+                    self.images = self.downImages
             elif self.facing == "right":
-                self.images = self.rightImages
+                if self.hurting:
+                    self.images = self.rightHurtImages
+                else:
+                    self.images = self.rightImages
             elif self.facing == "left":
-                self.images = self.leftImages
+                if self.hurting:
+                    self.images = self.leftHurtImages
+                else:
+                    self.images = self.leftImages
             
-            self.image = self.images[self.frame]
+            if self.hurting:
+                self.image = self.images[self.hurtingFrame]
+            else:
+                self.image = self.images[self.frame]
+
             
     def hurt(self, amount=1):
         self.health -= amount
+        self.changed = True
+        self.hurting = True
         if self.health <=0:
             self.living = False
             

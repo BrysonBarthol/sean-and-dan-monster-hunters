@@ -13,6 +13,14 @@ class Pestilence(Demon):
                            pygame.image.load("RSC/Boss/PestilenceLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Boss/PestilenceRight1.png"),
                             pygame.image.load("RSC/Boss/PestilenceRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Boss/PestilenceUpHit1.png"),
+                         pygame.image.load("RSC/Boss/PestilenceUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Boss/PestilenceDownHit1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Boss/PestilenceLeftHit1.png"),
+                           pygame.image.load("RSC/Boss/PestilenceLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Boss/PestilenceRightHit1.png"),
+                            pygame.image.load("RSC/Boss/PestilenceRightHit2.png")]
         
         self.seen = False
         self.direction = "down"
@@ -26,7 +34,8 @@ class Pestilence(Demon):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 150
+        self.detectionRadius = 350
+        self.health = 3
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:
@@ -64,9 +73,11 @@ class Pestilence(Demon):
         self.changed = False
         self.didBounceX = False
         self.didBounceY = False
+        
     
     def collidePlayer(self, other):
         hurt(player)
+    
         
     #The following code was written by Dominic Flanders
     
@@ -97,8 +108,17 @@ class Pestilence(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
-    
-
         
+    #my code
+    
+    def hurt(self, amount=1):
+        self.health -= amount
+        self.changed = True
+        self.hurting = True
+        if self.health <=0:
+            self.living = False
+        if self.hurt:
+            self.detectionRadius = 9001
+            
 
 
