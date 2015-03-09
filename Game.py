@@ -27,7 +27,8 @@ bgImage = pygame.image.load("RSC/MainMenu/Title Screen.png").convert()
 bgRect = bgImage.get_rect()
 
 bgColor = r,g,b = 0, 0, 0
-level = Level("screen24", ["Dan", "Sean"], screenSize)
+level = Level("screen124", ["Dan", "Sean"], screenSize)
+level.killOldLevels(0)
 players = level.players
 ghosts = level.ghosts
 leviathans = level.leviathans
@@ -73,6 +74,7 @@ while True:
             
     pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
     pygame.mixer.music.play(-1, 0.0) 
+    print "number of players:",len(players)
     HUDs += [HUDHearts([screenWidth-60, 10],players[0])]  
             
     while run and players[0].living:
@@ -263,7 +265,8 @@ while True:
                 if playButton.release(event.pos):
                     run = True
                     level.killOldLevels(0)
-                    level = Level("screen24", ["Dan", "Sean"], screenSize)
+                    level = Level("screen124", ["Dan", "Sean"], screenSize)
+                    print "h",level.players
                     players = level.players
                     ghosts = level.ghosts
                     leviathans = level.leviathans
