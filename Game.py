@@ -200,15 +200,26 @@ while True:
             for enemy in level.pestilences:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+        for bullet in enemyBullets:
+            bullet.update(screenWidth, screenHeight)
+            for block in level.hardBlocks:
+                bullet.collideBlock(block)
+            for platyer in level.players:
+                bullet.collideCreature(player)
+            
                 
         for bullet in enemyBullets:
             bullet.update(screenWidth, screenHeight)
-            
+            for player in players:
+                player.collideMonster(bullet)
 				
         #print len(bullets)        
         for bullet in bullets:
             if not bullet.living:
                 bullets.remove(bullet)
+        for bullet in enemyBullets:
+            if not bullet.living:
+                enemyBullets.remove(bullet)
         for enemy in level.ghosts:
             if not enemy.living:
                 level.ghosts.remove(enemy)
