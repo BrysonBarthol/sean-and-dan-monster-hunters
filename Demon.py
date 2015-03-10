@@ -15,6 +15,14 @@ class Demon(Creature):
                             pygame.image.load("RSC/Demon/DemonLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Demon/DemonRight1.png"),
                             pygame.image.load("RSC/Demon/DemonRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Demon/DemonUpHit1.png"),
+                             pygame.image.load("RSC/Demon/DemonUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Demon/DemonDownHit1.png"),
+                            pygame.image.load("RSC/Demon/DemonDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Demon/DemonLeftHit1.png"),
+                            pygame.image.load("RSC/Demon/DemonLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Demon/DemonRightHit1.png"),
+                            pygame.image.load("RSC/Demon/DemonRightHit2.png")]
         self.seen = False
         self.direction = "down"
         self.changed = False
@@ -29,6 +37,7 @@ class Demon(Creature):
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.detectionRadius = 96
         self.shooting = False
+        self.health = 2
             
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:

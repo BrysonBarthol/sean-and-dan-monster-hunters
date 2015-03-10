@@ -21,10 +21,22 @@ class Leviathan(Demon):
         self.leftImages = [pygame.image.load("RSC/Leviathan/LeviLeft1.png"),
                             pygame.image.load("RSC/Leviathan/LeviLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Leviathan/LeviRight1.png"),
-                            pygame.image.load("RSC/Leviathan/LeviRight2.png")]                   
+                            pygame.image.load("RSC/Leviathan/LeviRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Leviathan/LeviUpHit1.png"),
+                             pygame.image.load("RSC/Leviathan/LeviUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Leviathan/LeviDownHit1.png"),
+                            pygame.image.load("RSC/Leviathan/LeviDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Leviathan/LeviLeftHit1.png"),
+                            pygame.image.load("RSC/Leviathan/LeviLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Leviathan/LeviRightHit1.png"),
+                            pygame.image.load("RSC/Leviathan/LeviRightHit2.png")]
         self.images = self.downImages
         self.image = self.images[self.frame]
         self.shooting = False
+        self.shootDelay = 0
+        self.maxShootDelay = 50
+        self.bullet = 0
+        self.health = 3
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
             if self.speedx >= 0:
@@ -36,26 +48,6 @@ class Leviathan(Demon):
                 self.facing = "down"
             else:
                 self.facing = "up"
-    
-   # def update(self, players, width, height):
-      #  self.speed = [self.speedx, self.speedy]
-      #  if self.didBounceX or self.didBounceY:
-         #   self.changed = True
-      #  if math.fabs(self.speedx) >= math.fabs(self.speedy):
-        #    if self.speedx >= 0:
-         #       self.facing = "right"
-        #    else:
-          #      self.facing = "left"
-       # else:
-        #    if self.speedy >= 0:
-        #        self.facing = "down"
-        #    else:
-         #       self.facing = "up"    
-        #Creature.update(self, width, height)
-        #self.move(players)
-        #self.collideWall(width, height)
-       # self.animate()
-        #self.changed = False
        
     def update(self, width, height, players):
         Demon.update(self, width, height, players)
@@ -64,8 +56,11 @@ class Leviathan(Demon):
         
         if self.shooting:
             return self.shoot()
+            if self.bullet > 1:
+                return []
         else:
             return []
+            
         
     def move(self, players):
         self.speed = [self.speedx, self.speedy]
@@ -73,8 +68,10 @@ class Leviathan(Demon):
         
     def shoot(self, command = ""):
         return [Bullet(self.rect.center, self.facing, 10)]
+        self.bullet += 1
         
-    #The following code was written by Dominic Flanders
+        
+    #The following code was written (partly) by Dominic Flanders
     
     def distToPoint(self, pt):
         x1 = self.rect.center[0]
@@ -97,7 +94,6 @@ class Leviathan(Demon):
                 self.speedy = 0
             
             if math.fabs(pX-zX) > math.fabs(pY-zY):
-                print "r/l"
                 if pX > zX:
                     self.facing = "right"
                     self.shooting = True
@@ -106,7 +102,6 @@ class Leviathan(Demon):
                     self.facing = "left"
                     self.shooting = True
             else:
-                print "u/d"
                 if pY > zY:
                     self.facing = "down"
                     self.shooting = True
