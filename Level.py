@@ -6,7 +6,6 @@ from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
-from Portal import Portal
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -92,6 +91,7 @@ class Level():
             self.leviathans.remove(self.leviathans[0])
         while len(self.pestilences) > 0:
             self.pestilences.remove(self.pestilences[0])
+    
     def load(self, level, source=None):  
         if source != None:
             self.unload()    
@@ -108,15 +108,16 @@ class Level():
         newlines = []
         
         if source != None:
-            if source.upper() == "N":
-                plpos = [self.players[0].rect.center[0], self.screenHeight-75]
-            elif source.upper() == "S":
-                plpos = [self.players[0].rect.center[0], 75]
-            elif source.upper() == "W":
-                plpos = [self.screenWidth-75, self.players[0].rect.center[1]]
-            elif source.upper() == "E":
-                plpos = [75, self.players[0].rect.center[1]]
-            self.players[0].place(plpos)
+            if source.upper() != "O":
+                if source.upper() == "N":
+                    plpos = [self.players[0].rect.center[0], self.screenHeight-75]
+                elif source.upper() == "S":
+                    plpos = [self.players[0].rect.center[0], 75]
+                elif source.upper() == "W":
+                    plpos = [self.screenWidth-75, self.players[0].rect.center[1]]
+                elif source.upper() == "E":
+                    plpos = [75, self.players[0].rect.center[1]]
+                self.players[0].place(plpos)
         
 
         #Clean up the file by stripping newlines!
@@ -224,10 +225,13 @@ class Level():
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "O":
-                    #keep track of world
-                    #write 'if tree' for new word to coordnates
-                    #fix newlev concatonation
-                    newlev = self.level[:7] + str(int(self.level[7])+1) + self.level[8]
+                    screen = "screen"
+                    world = int(self.level[6])
+                    lev = self.level[7:]
+                    if world == 1:
+                        world = 2
+                        lev = "13"
+                    newlev = screen + str(world) + lev
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/Portal.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
@@ -245,7 +249,4 @@ class Level():
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "!":
                     self.pestilences += [Pestilence(
-                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
-                if c == "O":
-                    self.portals += [Portal(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
