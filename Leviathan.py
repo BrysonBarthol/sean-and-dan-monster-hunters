@@ -57,6 +57,7 @@ class Leviathan(Demon):
         if self.shooting:
             return self.shoot()
             if self.bullet > 1:
+                self.shootDelay = self.maxShootDelay
                 return []
         else:
             return []
@@ -69,7 +70,6 @@ class Leviathan(Demon):
     def shoot(self, command = ""):
         return [Bullet(self.rect.center, self.facing, 10)]
         self.bullet += 1
-        
         
     #The following code was written (partly) by Dominic Flanders
     
