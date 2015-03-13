@@ -1,10 +1,10 @@
 import pygame, math, sys
 from Block import Block
 
-class LevelChangeBlock(Block):
+class Pot(Block):
     def __init__(self,img, pos, size, newlev, kind):
         Block.__init__(self, img, pos, size)
-        self.img = img
+        self.img = pygame.load.image("RSC/
 
 
     def playerCollide(self, other):

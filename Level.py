@@ -6,6 +6,7 @@ from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
+from Pot import Pot
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -21,7 +22,8 @@ class Level():
         self.ghosts = []
         self.leviathans = []
         self.demons = []
-        self.pestilences = [] 
+        self.pestilences = []
+        self.pot = [] 
         
         
         self.players = []
@@ -58,6 +60,8 @@ class Level():
             things[demon.rect.center[1]/50][demon.rect.center[0]/50] = "D"
         for pestilence in self.pestilences:
             things[pestilence.rect.center[1]/50][pestilence.rect.center[0]/50] = "!"
+        for pot in self.pot:
+            things[pot.rect.center[1]/50][pot.rect.center[0]/50] = "T"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         for lc in self.portals:
@@ -91,6 +95,8 @@ class Level():
             self.leviathans.remove(self.leviathans[0])
         while len(self.pestilences) > 0:
             self.pestilences.remove(self.pestilences[0])
+        while len(self.pot) > 0:
+            self.pot.remove(self.pot[0])
     
     def load(self, level, source=None):  
         if source != None:
@@ -249,4 +255,7 @@ class Level():
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "!":
                     self.pestilences += [Pestilence(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                if c == "T":
+                    self.pot += [Pot(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
