@@ -173,58 +173,87 @@ class Level():
                             self.players += [Player(daName,  [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 
                 if c == "N":
-                    newlev = self.level[:8] + str(int(self.level[8])-1)
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])
+                    levy = int(self.level[8])-1
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/NDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize, self.blockSize),
                                                                 newlev, c)]
                 if c == "n":
-                    newlev = self.level[:8] + str(int(self.level[8])-1)
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])
+                    levy = int(self.level[8])-1
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "S":
-                    newlev = self.level[:8] + str(int(self.level[8])+1)
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])
+                    levy = int(self.level[8])+1
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/SDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "s":
-                    
-                    newlev = self.level[:8] + str(int(self.level[8])+1)
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])
+                    levy = int(self.level[8])+1
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock("RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "W":
-                    
-                    newlev = self.level[:7] + str(int(self.level[7])-1) + self.level[8]
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])-1
+                    levy = int(self.level[8])
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/WDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "w":
-                    
-                    newlev = self.level[:7] + str(int(self.level[7])-1) + self.level[8]
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])-11
+                    levy = int(self.level[8])
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "E":
-                    newlev = self.level[:7] + str(int(self.level[7])+1) + self.level[8]
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])+1
+                    levy = int(self.level[8])
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/EDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
                 if c == "e":
-                    newlev = self.level[:7] + str(int(self.level[7])+1) + self.level[8]
+                    screen = "screen"
+                    world = int(self.level[6])
+                    levx = int(self.level[7])+1
+                    levy = int(self.level[8])
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/EmptyDoor.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
@@ -233,11 +262,13 @@ class Level():
                 if c == "O":
                     screen = "screen"
                     world = int(self.level[6])
-                    lev = self.level[7:]
+                    levx = int(self.level[7])+1
+                    levy = int(self.level[8])
                     if world == 1:
                         world = 2
-                        lev = "13"
-                    newlev = screen + str(world) + lev
+                        levx = 1
+                        levy = 3
+                    newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/Portal.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
