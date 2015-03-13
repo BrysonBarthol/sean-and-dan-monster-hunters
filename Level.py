@@ -6,7 +6,7 @@ from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
-from Pot import Pot
+#from Pot import Pot
 
 class Level():
     def __init__(self, level, names, screenSize):
