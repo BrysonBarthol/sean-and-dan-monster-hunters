@@ -6,6 +6,7 @@ from Ghost import Ghost
 from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
+from War import War
 #from Pot import Pot
 
 class Level():
@@ -23,6 +24,7 @@ class Level():
         self.leviathans = []
         self.demons = []
         self.pestilences = []
+        self.wars = []
         self.pot = [] 
         
         
@@ -60,6 +62,8 @@ class Level():
             things[demon.rect.center[1]/50][demon.rect.center[0]/50] = "D"
         for pestilence in self.pestilences:
             things[pestilence.rect.center[1]/50][pestilence.rect.center[0]/50] = "!"
+        for war in self.wars:
+            things[war.rect.center[1]/50][war.rect.center[0]/50] = "A"
         for pot in self.pot:
             things[pot.rect.center[1]/50][pot.rect.center[0]/50] = "T"
         for lc in self.levelChangeBlocks:
@@ -95,6 +99,8 @@ class Level():
             self.leviathans.remove(self.leviathans[0])
         while len(self.pestilences) > 0:
             self.pestilences.remove(self.pestilences[0])
+        while len(self.wars) > 0:
+            self.wars.remove(self.wars[0])
         while len(self.pot) > 0:
             self.pot.remove(self.pot[0])
     
@@ -137,9 +143,15 @@ class Level():
         for y, line in enumerate(newlines):
             for x, c in enumerate(line):
                 if c == "#":
-                    self.hardBlocks += [Block("RSC/Block/bush.png",
-                                    [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                    (self.blockSize,self.blockSize))]
+                    world = int(self.level[6])
+                    if world == 1:
+                        self.hardBlocks += [Block("RSC/Block/bush.png",
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                        (self.blockSize,self.blockSize))]
+                    elif world == 2:
+                        self.hardBlocks += [Block("RSC/Block/fireblock.png",
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                        (self.blockSize,self.blockSize))]
                     self.blocks += [self.hardBlocks[-1]]
                 if c == "*":
                     self.blocks += [Block("RSC/Block/block.png",
@@ -229,7 +241,7 @@ class Level():
                 if c == "w":
                     screen = "screen"
                     world = int(self.level[6])
-                    levx = int(self.level[7])-11
+                    levx = int(self.level[7])-1
                     levy = int(self.level[8])
                     newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
@@ -286,6 +298,9 @@ class Level():
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "!":
                     self.pestilences += [Pestilence(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                if c == "A":
+                    self.wars += [War(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "T":
                     self.pot += [Pot(
