@@ -7,7 +7,7 @@ from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
 from War import War
-#from Pot import Pot
+from Pot import Pot
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -25,7 +25,7 @@ class Level():
         self.demons = []
         self.pestilences = []
         self.wars = []
-        self.pot = [] 
+        self.pots = [] 
         
         
         self.players = []
@@ -64,7 +64,7 @@ class Level():
             things[pestilence.rect.center[1]/50][pestilence.rect.center[0]/50] = "!"
         for war in self.wars:
             things[war.rect.center[1]/50][war.rect.center[0]/50] = "A"
-        for pot in self.pot:
+        for pot in self.pots:
             things[pot.rect.center[1]/50][pot.rect.center[0]/50] = "T"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
@@ -102,7 +102,7 @@ class Level():
         while len(self.wars) > 0:
             self.wars.remove(self.wars[0])
         while len(self.pot) > 0:
-            self.pot.remove(self.pot[0])
+            self.pots.remove(self.pots[0])
     
     def load(self, level, source=None):  
         if source != None:
@@ -316,5 +316,5 @@ class Level():
                     self.wars += [War(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "T":
-                    self.pot += [Pot(
+                    self.pots += [Pot(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]

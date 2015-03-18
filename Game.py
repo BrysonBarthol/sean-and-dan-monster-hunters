@@ -9,6 +9,7 @@ from Bullet import Bullet
 from MainMenu import Button
 from HUDHeart import HUDHearts
 from Pestilence import Pestilence
+from Pot import Pot
 pygame.init()
 win = False
 
@@ -34,6 +35,7 @@ ghosts = level.ghosts
 leviathans = level.leviathans
 demons = level.demons
 pestilences = level.pestilences
+pots = level.pots
 
 playButton = Button([screenWidth/2, screenHeight-300], 
                                      "RSC/MainMenu/playbutton.png", 
@@ -130,6 +132,9 @@ while True:
         
         for pestilence in pestilences:
             pestilence.update(screenWidth, screenHeight, players)
+            
+        for pot in pots:
+            pot.update(screenWidth, screenHeight)
         
         for hud in HUDs:
             hud.update()    
@@ -262,6 +267,8 @@ while True:
             screen.blit(hud.image, hud.rect)
         for pestilence in pestilences:
             screen.blit(pestilence.image, pestilence.rect)
+        for pot in pots:
+            screen.blit(pot.image, pot.rect)
         pygame.display.flip()
         
     bgImage = pygame.image.load("RSC/MainMenu/gameover.png").convert()
@@ -283,6 +290,7 @@ while True:
                     leviathans = level.leviathans
                     demons = level.demons
                     pestilences = level.pestilences
+                    pots = level.pots
                     
         bgColor = r,g,b
         screen.fill(bgColor)
