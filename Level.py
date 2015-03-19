@@ -101,7 +101,7 @@ class Level():
             self.pestilences.remove(self.pestilences[0])
         while len(self.wars) > 0:
             self.wars.remove(self.wars[0])
-        while len(self.pot) > 0:
+        while len(self.pots) > 0:
             self.pots.remove(self.pots[0])
     
     def load(self, level, source=None):  
