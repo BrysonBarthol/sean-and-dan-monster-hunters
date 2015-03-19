@@ -7,6 +7,7 @@ from Demon import Demon
 from Leviathan import Leviathan
 from Pestilence import Pestilence
 from War import War
+from Death import Death
 from Pot import Pot
 
 class Level():
@@ -25,6 +26,7 @@ class Level():
         self.demons = []
         self.pestilences = []
         self.wars = []
+        self.deaths = []
         self.pots = [] 
         
         
@@ -101,6 +103,8 @@ class Level():
             self.pestilences.remove(self.pestilences[0])
         while len(self.wars) > 0:
             self.wars.remove(self.wars[0])
+        while len(self.deaths) > 0:
+            self.deaths.remove(self.deaths[0])
         while len(self.pot) > 0:
             self.pots.remove(self.pots[0])
     
@@ -314,6 +318,10 @@ class Level():
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "A":
                     self.wars += [War(
+                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
+                                        
+                if c == "R":
+                    self.deaths += [Death(
                                         [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)])]
                 if c == "T":
                     self.pots += [Pot(
