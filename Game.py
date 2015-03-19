@@ -154,6 +154,10 @@ while True:
         for pestilence in pestilences:
             for player in players:
                 player.collideMonster(pestilence)
+                
+        for pot in pots:
+            for player in players:
+                player.collidePot(pot)
             
         for block in level.hardBlocks:
             for player in players:
@@ -205,6 +209,9 @@ while True:
             for enemy in level.pestilences:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+            for enemy in level.pots:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
         for bullet in enemyBullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
@@ -241,6 +248,9 @@ while True:
             if not enemy.living:
                 level.pestilences.remove(enemy)
 
+        for enemy in level.pots:
+            if not enemy.living:
+                level.pots.remove(enemy)
                 
         red = 0
         green = 0
