@@ -1,6 +1,7 @@
 import pygame, math, sys, time, os
 from Block import Block
 from LevelChangeBlock import LevelChangeBlock
+from Door import Door
 from Player import Player
 from Ghost import Ghost
 from Demon import Demon
@@ -9,6 +10,7 @@ from Pestilence import Pestilence
 from War import War
 from Death import Death
 from Pot import Pot
+from Key import Key
 
 class Level():
     def __init__(self, level, names, screenSize):
@@ -17,10 +19,12 @@ class Level():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
+        self.keys = []
         self.hardBlocks = []
         self.portals = []
         
         self.levelChangeBlocks = []
+        self.doors = []
         self.ghosts = []
         self.leviathans = []
         self.demons = []
@@ -28,6 +32,7 @@ class Level():
         self.wars = []
         self.deaths = []
         self.pots = [] 
+        self.pot = [] 
         
         
         self.players = []
@@ -70,6 +75,8 @@ class Level():
             things[pot.rect.center[1]/50][pot.rect.center[0]/50] = "T"
         for lc in self.levelChangeBlocks:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
+        for lc in self.doors:
+            things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         for lc in self.portals:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         
@@ -87,12 +94,16 @@ class Level():
             
         while len(self.blocks) > 0:
             self.blocks.remove(self.blocks[0])
+        while len(self.keys) > 0:
+            self.keys.remove(self.keys[0])
         while len(self.portals) > 0:
             self.portals.remove(self.portals[0])
         while len(self.hardBlocks) > 0:
             self.hardBlocks.remove(self.hardBlocks[0])
         while len(self.levelChangeBlocks) > 0:
             self.levelChangeBlocks.remove(self.levelChangeBlocks[0])
+        while len(self.doors) > 0:
+            self.doors.remove(self.doors[0])
         while len(self.ghosts) > 0:
             self.ghosts.remove(self.ghosts[0])
         while len(self.demons) > 0:
@@ -103,14 +114,8 @@ class Level():
             self.pestilences.remove(self.pestilences[0])
         while len(self.wars) > 0:
             self.wars.remove(self.wars[0])
-<<<<<<< HEAD
-        while len(self.deaths) > 0:
-            self.deaths.remove(self.deaths[0])
         while len(self.pot) > 0:
-=======
-        while len(self.pots) > 0:
->>>>>>> origin/master
-            self.pots.remove(self.pots[0])
+            self.pot.remove(self.pot[0])
     
     def load(self, level, source=None):  
         if source != None:
@@ -136,6 +141,12 @@ class Level():
                 elif source.upper() == "W":
                     plpos = [self.screenWidth-75, self.players[0].rect.center[1]]
                 elif source.upper() == "E":
+                    plpos = [75, self.players[0].rect.center[1]]
+                elif source.upper() == "2":
+                    plpos = [self.players[0].rect.center[0], 75]
+                elif source.upper() == "3":
+                    plpos = [75, self.players[0].rect.center[1]]
+                elif source.upper() == "7":
                     plpos = [75, self.players[0].rect.center[1]]
                 self.players[0].place(plpos)
         
@@ -281,6 +292,70 @@ class Level():
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize,self.blockSize),
                                                                 newlev, c)]
+                if c == "7":
+                    if ((x*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (x*self.blockSize)+(self.blockSize/2) == self.screenSize[0] -  self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.screenSize[1] -  self.blockSize/2):
+                            screen = "screen"
+                            world = int(self.level[6])
+                            levx = int(self.level[7])+1
+                            levy = int(self.level[8])
+                            newlev = screen + str(world) + str(levx) + str(levy)
+                            self.doors += [Door(
+                                                "RSC/Block/tree.png",
+                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                (self.blockSize,self.blockSize),
+                                                newlev, c)]
+                    else:
+                        self.keys += [Key(
+                                            "RSC/Block/tree.png",
+                                            [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                            (self.blockSize,self.blockSize),
+                                            c)]
+                
+                if c == "2":
+                    if ((x*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (x*self.blockSize)+(self.blockSize/2) == self.screenSize[0] -  self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.screenSize[1] -  self.blockSize/2):
+                            screen = "screen"
+                            world = int(self.level[6])
+                            levx = int(self.level[7])
+                            levy = int(self.level[8])+1
+                            newlev = screen + str(world) + str(levx) + str(levy)
+                            self.doors += [Door(
+                                                "RSC/Block/tree.png",
+                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                (self.blockSize,self.blockSize),
+                                                newlev, c)]
+                    else:
+                        self.keys += [Key(
+                                            "RSC/Block/tree.png",
+                                            [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                            (self.blockSize,self.blockSize),
+                                            c)]
+                if c == "3":
+                    if ((x*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (x*self.blockSize)+(self.blockSize/2) == self.screenSize[0] -  self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.screenSize[1] -  self.blockSize/2):
+                            screen = "screen"
+                            world = int(self.level[6])
+                            levx = int(self.level[7])+1
+                            levy = int(self.level[8])
+                            newlev = screen + str(world) + str(levx) + str(levy)
+                            self.doors += [Door(
+                                                "RSC/Block/tree.png",
+                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                (self.blockSize,self.blockSize),
+                                                newlev, c)]
+                    else:
+                        self.keys += [Key(
+                                            "RSC/Block/tree.png",
+                                            [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                            (self.blockSize,self.blockSize),
+                                            c)]
                 if c == "e":
                     screen = "screen"
                     world = int(self.level[6])

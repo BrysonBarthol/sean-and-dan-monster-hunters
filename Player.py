@@ -94,6 +94,7 @@ class Player(Creature):
         self.hurting = False
         self.hurtingFrame = 0
         self.hurtingFrameMax = 1
+        self.keys = []
         
         
 

@@ -2,8 +2,10 @@ import pygame, math, sys, os
 from Block import Block
 from Demon import Demon
 from Ghost import Ghost
+from Key import Key
 from Leviathan import Leviathan
 from Level import Level
+from Door import Door
 from LevelChangeBlock import LevelChangeBlock
 from Bullet import Bullet
 from MainMenu import Button
@@ -35,6 +37,7 @@ ghosts = level.ghosts
 leviathans = level.leviathans
 demons = level.demons
 pestilences = level.pestilences
+keys = level.keys
 pots = level.pots
 
 playButton = Button([screenWidth/2, screenHeight-300], 
@@ -137,8 +140,12 @@ while True:
             pot.update(screenWidth, screenHeight)
         
         for hud in HUDs:
-            hud.update()    
-            
+            hud.update() 
+        for key in keys:
+            for player in players:
+                if key.playerCollide(player):
+                    player.keys += [key.kind]
+                    
         for ghost in ghosts:
             for player in players:
                 player.collideMonster(ghost)
@@ -193,6 +200,24 @@ while True:
                 if levelChangeBlock.pestilenceCollide(pestilence):
                     pestilence.speedx = -pestilence.speedx
                     pestilence.speedy = -pestilence.speedy
+        for door in level.doors:
+            #print levelChangeBlock.newlev
+            for player in players:
+                if door.playerCollide(player):
+                    print "new level"
+                    level.load(door.newlev, door.kind)
+            for demon in demons:
+                if door.demonCollide(demon):
+                    demon.speedx = -demon.speedx
+                    demon.speedy = -demon.speedy
+            for leviathan in leviathans:
+                if door.leviathanCollide(leviathan):
+                    leviathan.speedx = -leviathan.speedx
+                    leviathan.speedy = -leviathan.speedy
+            for pestilence in pestilences:
+                if door.pestilenceCollide(pestilence):
+                    pestilence.speedx = -pestilence.speedx
+                    pestilence.speedy = -pestilence.speedy
         for bullet in bullets:
             bullet.update(screenWidth, screenHeight)
             for block in level.hardBlocks:
@@ -229,6 +254,9 @@ while True:
         for bullet in bullets:
             if not bullet.living:
                 bullets.remove(bullet)
+        for key in keys:
+            if not key.living:
+                keys.remove(key)
         for bullet in enemyBullets:
             if not bullet.living:
                 enemyBullets.remove(bullet)
@@ -261,6 +289,8 @@ while True:
             screen.blit(block.image, block.rect)
         for levelChangeBlock in level.levelChangeBlocks:
             screen.blit(levelChangeBlock.image, levelChangeBlock.rect)
+        for door in level.doors:
+            screen.blit(door.image, door.rect)
         for player in players:
             screen.blit(player.image, player.rect)
         for bullet in bullets:
@@ -279,6 +309,8 @@ while True:
             screen.blit(pestilence.image, pestilence.rect)
         for pot in pots:
             screen.blit(pot.image, pot.rect)
+        for key in keys:
+            screen.blit(key.image, key.rect)
         pygame.display.flip()
         
     bgImage = pygame.image.load("RSC/MainMenu/gameover.png").convert()
