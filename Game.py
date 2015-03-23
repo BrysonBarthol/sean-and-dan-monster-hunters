@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 import pygame, math, sys, os
 from Block import Block
 from Demon import Demon
@@ -47,6 +39,8 @@ ghosts = level.ghosts
 leviathans = level.leviathans
 demons = level.demons
 pestilences = level.pestilences
+wars = level.wars
+deaths = level.deaths
 keys = level.keys
 pots = level.pots
 
@@ -146,6 +140,12 @@ while True:
         for pestilence in pestilences:
             pestilence.update(screenWidth, screenHeight, players)
             
+        for war in wars:
+            war.update(screenWidth, screenHeight, players)
+            
+        for death in deaths:
+            death.update(screenWidth, screenHeight, players)
+            
         for pot in pots:
             pot.update(screenWidth, screenHeight)
         
@@ -192,6 +192,14 @@ while True:
                 if block.pestilenceCollide(pestilence):
                     pestilence.speedx = -pestilence.speedx
                     pestilence.speedy = -pestilence.speedy
+            for war in wars:
+                if block.warCollide(war):
+                    war.speedx = -war.speedx
+                    war.speedy = -war.speedy
+            for death in deaths:
+                if block.deathCollide(death):
+                    death.speedx = -death.speedx
+                    death.speedy = -death.speedy
         for levelChangeBlock in level.levelChangeBlocks:
             #print levelChangeBlock.newlev
             for player in players:
@@ -244,6 +252,12 @@ while True:
             for enemy in level.pestilences:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
+            for enemy in level.wars:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
+            for enemy in level.deaths:
+                bullet.collideCreature(enemy)
+                enemy.collideBullet(bullet)
             for enemy in level.pots:
                 bullet.collideCreature(enemy)
                 enemy.collideBullet(bullet)
@@ -286,6 +300,14 @@ while True:
             if not enemy.living:
                 level.pestilences.remove(enemy)
 
+        for enemy in level.wars:
+            if not enemy.living:
+                level.wars.remove(enemy)
+                
+        for death in level.deaths:
+            if not enemy.living:
+                level.deaths.remove(enemy)
+
         for enemy in level.pots:
             if not enemy.living:
                 level.pots.remove(enemy)
@@ -317,6 +339,10 @@ while True:
             screen.blit(hud.image, hud.rect)
         for pestilence in pestilences:
             screen.blit(pestilence.image, pestilence.rect)
+        for war in wars:
+            screen.blit(war.image, war.rect)
+        for death in deaths:
+            screen.blit(death.image, death.rect)
         for pot in pots:
             screen.blit(pot.image, pot.rect)
         for key in keys:
@@ -342,6 +368,8 @@ while True:
                     leviathans = level.leviathans
                     demons = level.demons
                     pestilences = level.pestilences
+                    wars = level.wars
+                    deaths = level.deaths
                     pots = level.pots
                     
         bgColor = r,g,b

@@ -57,6 +57,23 @@ class Block():
                 #print "Collide With: ", other
                 return True
         return False    
+        
+    def warCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False    
+    def deathCollide(self, other):
+        if (self.rect.right > other.rect.left
+            and self.rect.left < other.rect.right):
+            if (self.rect.bottom > other.rect.top and
+                self.rect.top < other.rect.bottom):
+                #print "Collide With: ", other
+                return True
+        return False    
     
         
     def update(self):

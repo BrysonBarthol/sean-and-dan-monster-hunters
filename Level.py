@@ -114,10 +114,6 @@ class Level():
             self.pestilences.remove(self.pestilences[0])
         while len(self.wars) > 0:
             self.wars.remove(self.wars[0])
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
         while len(self.deaths) > 0:
             self.deaths.remove(self.deaths[0])
         while len(self.pots) > 0:
