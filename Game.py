@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 import pygame, math, sys, os
 from Block import Block
 from Demon import Demon
@@ -11,6 +19,8 @@ from Bullet import Bullet
 from MainMenu import Button
 from HUDHeart import HUDHearts
 from Pestilence import Pestilence
+from War import War
+from Death import Death
 from Pot import Pot
 pygame.init()
 win = False
