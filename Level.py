@@ -305,7 +305,7 @@ class Level():
                             levy = int(self.level[8])
                             newlev = screen + str(world) + str(levx) + str(levy)
                             self.doors += [Door(
-                                                "RSC/Block/tree.png",
+                                                "RSC/Block/ELDoor.png",
                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                 (self.blockSize,self.blockSize),
                                                 newlev, c)]
@@ -327,7 +327,7 @@ class Level():
                             levy = int(self.level[8])+1
                             newlev = screen + str(world) + str(levx) + str(levy)
                             self.doors += [Door(
-                                                "RSC/Block/tree.png",
+                                                "RSC/Block/SLDoor.png",
                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                 (self.blockSize,self.blockSize),
                                                 newlev, c)]
@@ -348,7 +348,7 @@ class Level():
                             levy = int(self.level[8])
                             newlev = screen + str(world) + str(levx) + str(levy)
                             self.doors += [Door(
-                                                "RSC/Block/tree.png",
+                                                "RSC/Block/ELDoor.png",
                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                 (self.blockSize,self.blockSize),
                                                 newlev, c)]
