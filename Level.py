@@ -311,7 +311,7 @@ class Level():
                                                 newlev, c)]
                     else:
                         self.keys += [Key(
-                                            "RSC/Block/tree.png",
+                                            "RSC/Block/redKey.png",
                                             [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                             (self.blockSize,self.blockSize),
                                             c)]
@@ -333,7 +333,7 @@ class Level():
                                                 newlev, c)]
                     else:
                         self.keys += [Key(
-                                            "RSC/Block/tree.png",
+                                            "RSC/Block/blueKey.png",
                                             [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                             (self.blockSize,self.blockSize),
                                             c)]
@@ -354,7 +354,7 @@ class Level():
                                                 newlev, c)]
                     else:
                         self.keys += [Key(
-                                            "RSC/Block/tree.png",
+                                            "RSC/Block/yellowKey.png",
                                             [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                             (self.blockSize,self.blockSize),
                                             c)]
