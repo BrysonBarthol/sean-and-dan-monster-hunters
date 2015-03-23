@@ -10,7 +10,7 @@ class Pot(Creature):
         self.upImages = [pygame.image.load("RSC/Block/Pot1.png")]
         self.upHurtImages = [pygame.image.load("RSC/Block/Pot2.png"),
                              pygame.image.load("RSC/Block/Pot3.png")]
-        self.health = 1
+        self.health = 2
         self.facing = "up"
         self.changed = False
         self.waitCount = 0
@@ -23,7 +23,10 @@ class Pot(Creature):
                              
     def update(self, width, height):
         Creature.update(self, width, height)
+        self.animate()
         self.changed = False
+        
+    #def animate():
 
 
 
