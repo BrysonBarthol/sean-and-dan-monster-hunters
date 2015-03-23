@@ -304,7 +304,7 @@ while True:
             if not enemy.living:
                 level.wars.remove(enemy)
                 
-        for death in level.deaths:
+        for enemy in level.deaths:
             if not enemy.living:
                 level.deaths.remove(enemy)
 

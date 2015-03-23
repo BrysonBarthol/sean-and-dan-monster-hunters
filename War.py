@@ -13,6 +13,14 @@ class War(Demon):
                            pygame.image.load("RSC/Boss/WarLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Boss/WarRight1.png"),
                             pygame.image.load("RSC/Boss/WarRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Boss/WarUpHit1.png"),
+                         pygame.image.load("RSC/Boss/WarUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Boss/WarDownHit1.png"),
+                           pygame.image.load("RSC/Boss/WarDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Boss/WarLeftHit1.png"),
+                           pygame.image.load("RSC/Boss/WarLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Boss/WarRightHit1.png"),
+                            pygame.image.load("RSC/Boss/WarRightHit2.png")]
         
         self.seen = False
         self.direction = "down"
@@ -26,7 +34,8 @@ class War(Demon):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 150
+        self.detectionRadius = 350
+        self.health = 15
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:
@@ -64,9 +73,11 @@ class War(Demon):
         self.changed = False
         self.didBounceX = False
         self.didBounceY = False
+        
     
     def collidePlayer(self, other):
         hurt(player)
+    
         
     #The following code was written by Dominic Flanders
     
@@ -97,3 +108,15 @@ class War(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
+        
+    #my code
+    
+    def hurt(self, amount=1):
+        self.health -= amount
+        self.changed = True
+        self.hurting = True
+        if self.health <=0:
+            self.living = False
+        if self.hurt:
+            self.detectionRadius = 9001
+            

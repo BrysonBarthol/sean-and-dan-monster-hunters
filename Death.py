@@ -1,8 +1,8 @@
 import pygame, math
 from Demon import Demon
 
-    
-class Death(Demon):
+
+class Death (Demon):
     def __init__(self, pos):
         Demon.__init__(self, pos)
         self.upImages = [pygame.image.load("RSC/Boss/DeathUp1.png"),
@@ -13,6 +13,14 @@ class Death(Demon):
                            pygame.image.load("RSC/Boss/DeathLeft2.png")]
         self.rightImages = [pygame.image.load("RSC/Boss/DeathRight1.png"),
                             pygame.image.load("RSC/Boss/DeathRight2.png")]
+        self.upHurtImages = [pygame.image.load("RSC/Boss/DeathUpHit1.png"),
+                         pygame.image.load("RSC/Boss/DeathUpHit2.png")]
+        self.downHurtImages = [pygame.image.load("RSC/Boss/DeathDownHit1.png"),
+                           pygame.image.load("RSC/Boss/DeathDownHit2.png")]
+        self.leftHurtImages = [pygame.image.load("RSC/Boss/DeathLeftHit1.png"),
+                           pygame.image.load("RSC/Boss/DeathLeftHit2.png")]
+        self.rightHurtImages = [pygame.image.load("RSC/Boss/DeathRightHit1.png"),
+                            pygame.image.load("RSC/Boss/DeathRightHit2.png")]
         
         self.seen = False
         self.direction = "down"
@@ -26,7 +34,8 @@ class Death(Demon):
         self.rect = self.image.get_rect(center = self.rect.center)
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 150
+        self.detectionRadius = 350
+        self.health = 15
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:
@@ -64,9 +73,11 @@ class Death(Demon):
         self.changed = False
         self.didBounceX = False
         self.didBounceY = False
+        
     
     def collidePlayer(self, other):
         hurt(player)
+    
         
     #The following code was written by Dominic Flanders
     
@@ -97,3 +108,15 @@ class Death(Demon):
                 self.speedy = -self.maxSpeed
             else:
                 self.speedy = 0
+        
+    #my code
+    
+    def hurt(self, amount=1):
+        self.health -= amount
+        self.changed = True
+        self.hurting = True
+        if self.health <=0:
+            self.living = False
+        if self.hurt:
+            self.detectionRadius = 9001
+            
