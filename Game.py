@@ -17,7 +17,7 @@ from Pot import Pot
 pygame.init()
 win = False
 
-#tyuyu
+#cdyfurtyu
 
 clock = pygame.time.Clock()
 
