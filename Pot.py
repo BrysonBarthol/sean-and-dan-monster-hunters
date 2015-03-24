@@ -27,6 +27,9 @@ class Pot(Creature):
         self.changed = False
         
     #def animate():
+        #if self.hurting:
+            #if self.hurtingFrame < self.hurtingFrameMax:
+                        #self.hurtingFrame += 1
 
 
 
