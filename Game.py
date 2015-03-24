@@ -17,6 +17,8 @@ from Pot import Pot
 pygame.init()
 win = False
 
+#tyuyu
+
 clock = pygame.time.Clock()
 
 bullets = []
