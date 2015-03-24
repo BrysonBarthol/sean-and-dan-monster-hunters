@@ -331,6 +331,29 @@ class Level():
                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                 (self.blockSize,self.blockSize),
                                                 newlev, c)]
+                                            
+                    else:
+                        self.keys += [Key(
+                                            "RSC/Block/blueKey.png",
+                                            [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                            (self.blockSize,self.blockSize),
+                                            c)]
+                if c == "6":
+                    if ((x*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (x*self.blockSize)+(self.blockSize/2) == self.screenSize[0] -  self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.blockSize/2 or
+                        (y*self.blockSize)+(self.blockSize/2) == self.screenSize[1] -  self.blockSize/2):
+                            screen = "screen"
+                            world = int(self.level[6])
+                            levx = int(self.level[7])
+                            levy = int(self.level[8])+1
+                            newlev = screen + str(world) + str(levx) + str(levy)
+                            self.doors += [Door(
+                                                "RSC/Block/SLDoor.png",
+                                                [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
+                                                (self.blockSize,self.blockSize),
+                                                newlev, c)]
+                                            
                     else:
                         self.keys += [Key(
                                             "RSC/Block/blueKey.png",
