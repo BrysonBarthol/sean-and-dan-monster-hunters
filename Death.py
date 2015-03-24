@@ -35,7 +35,7 @@ class Death (Demon):
         self.maxSpeed = 2
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.detectionRadius = 350
-        self.health = 15
+        self.health = 45
         
         if math.fabs(self.speedx) >= math.fabs(self.speedy):
                 if self.speedx >= 0:

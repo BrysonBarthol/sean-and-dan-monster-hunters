@@ -371,8 +371,8 @@ class Level():
                                                                 newlev, c)]
                 if c == "O":
                     screen = "screen"
-                    world = int(self.level[6])
-                    levx = int(self.level[7])+1
+                    world = int(self.level[6])+1
+                    levx = int(self.level[7])
                     levy = int(self.level[8])
                     if world == 1:
                         world = 2
