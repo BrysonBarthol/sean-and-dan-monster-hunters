@@ -32,7 +32,6 @@ class Level():
         self.wars = []
         self.deaths = []
         self.pots = [] 
-        self.pot = [] 
         
         
         self.players = []
@@ -79,6 +78,8 @@ class Level():
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
         for lc in self.portals:
             things[lc.rect.center[1]/50][lc.rect.center[0]/50] = lc.kind
+        for key in self.keys:
+            things[key.rect.center[1]/50][key.rect.center[0]/50] = key.kind
         
         thingString = ""
         for line in things:
@@ -118,6 +119,8 @@ class Level():
             self.deaths.remove(self.deaths[0])
         while len(self.pots) > 0:
             self.pots.remove(self.pots[0])
+        while len(self.keys) > 0:
+            self.keys.remove(self.keys[0])
     
     def load(self, level, source=None):  
         if source != None:
@@ -394,13 +397,17 @@ class Level():
                                                                 newlev, c)]
                 if c == "O":
                     screen = "screen"
-                    world = int(self.level[6])+1
-                    levx = int(self.level[7])
-                    levy = int(self.level[8])
                     if world == 1:
                         world = 2
                         levx = 1
                         levy = 3
+                    elif world == 2:
+                        world = 3
+                        levx = 5
+                        levy = 2
+                    else:
+                        print "hard code the next world!"
+                        sys.exit()
                     newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
                                                                 "RSC/Block/Portal.png",
