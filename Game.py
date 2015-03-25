@@ -14,10 +14,10 @@ from Pestilence import Pestilence
 from War import War
 from Death import Death
 from Pot import Pot
+
 pygame.init()
 win = False
 
-#cdyfurtyu
 
 clock = pygame.time.Clock()
 
