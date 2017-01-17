@@ -18,7 +18,7 @@ for world in worlds:
     print "----------"
     
 
-for world in worlds:
+for w, world in enumerate(worlds):
     maxX = 0
     maxY = 0
 
@@ -33,24 +33,36 @@ for world in worlds:
     print maxX, maxY
 
 
-""""
+
  
-wMap1 = " "
+    wMap = [[]]
 
-for x in range(maxX1):
-    wMap1 += str(x+1)*20 + '|'
+    for x in range(maxX):
+        wMap[0] += [str(x+1)*20] + ['|']
     
-wMap1 += "\n"
 
-for y in range(maxY1):
-    line = str(y+1)
-    for x in range(maxX1):
-        line += " "*20 + '|'
-    line += '\n'
-    wMap1 += line * 15 
-    wMap1 += "-" * 21 * maxX1 + "-" + '\n'
+
+    for y in range(maxY):
+        line = [str(y+1)]
+        for x in range(maxX):
+            line += [" "*20] + ['|']
+            print line
+        for i in range(15):
+            wMap += [line]
+            print len(wMap), len(wMap[-1])
+        wMap += ["-" * 21 * maxX + "-"]
+        
+        
     
-outFile = open("wMap1.txt", 'w')
-outFile.write(wMap1)
-outFile.close()
-"""
+ 
+    out = ""
+    for l in wMap:
+        for s in l:
+            out += s
+        out += '\n'
+        
+
+    outFile = open("wMap" + str(w+1) + ".txt", 'w')
+    outFile.write(out)
+    outFile.close()
+
