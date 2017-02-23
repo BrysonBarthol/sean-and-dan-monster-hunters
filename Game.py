@@ -86,6 +86,7 @@ while True:
     pygame.mixer.music.load("RSC/Audio/Music/bgm_action_1.mp3")
     pygame.mixer.music.play(-1, 0.0) 
     print "number of players:",len(players)
+    level.killOldLevels(0)
     HUDs += [HUDHearts([screenWidth-60, 10],players[0])]  
             
     while run and players[0].living:
@@ -373,6 +374,8 @@ while True:
                     wars = level.wars
                     deaths = level.deaths
                     pots = level.pots
+                    keys = level.keys
+                    
                     
         bgColor = r,g,b
         screen.fill(bgColor)

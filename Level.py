@@ -153,6 +153,9 @@ class Level():
                     plpos = [75, self.players[0].rect.center[1]]
                 elif source.upper() == "7":
                     plpos = [75, self.players[0].rect.center[1]]
+                else:
+                    print "The door is not where you think it is!"
+                    plpos = [75, 75]
                 self.players[0].place(plpos)
         
 
